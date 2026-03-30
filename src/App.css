@@ -1706,6 +1706,21 @@ footer::before {
 
 .footer-bottom a:hover { color: white; }
 
+.footer-bottom-link {
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.footer-bottom-link:hover {
+  color: white;
+}
+
 /* ─────────────────────────────────────────
    RESPONSIVE
 ───────────────────────────────────────── */
