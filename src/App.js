@@ -561,6 +561,15 @@ export default function App() {
     return () => window.removeEventListener("scroll", onScroll);
   }, [showEventsPage, showGAPage]);
 
+  const INQUIRY_LABELS = {
+    membership:  "Membership Inquiry",
+    programs:    "Programs & Services",
+    events:      "Events & Registration",
+    partnership: "Partnership Opportunities",
+    media:       "Media & Press",
+    other:       "Other",
+  };
+
   const handleContact = (e) => {
     e.preventDefault();
     setContactLoading(true);
@@ -572,7 +581,7 @@ export default function App() {
       {
         from_name:    contactForm.name,
         from_email:   contactForm.email,
-        inquiry_type: contactForm.inquiry,
+        inquiry_type: INQUIRY_LABELS[contactForm.inquiry] || contactForm.inquiry,
         subject:      contactForm.subject,
         message:      contactForm.message,
         reply_to:     contactForm.email,
@@ -986,7 +995,9 @@ export default function App() {
 
               {submitted && (
                 <div className="form-success" role="alert">
-                  <Icon.CheckCircle />
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ width: "18px", height: "18px", flexShrink: 0 }}>
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+                  </svg>
                   Message sent! We'll get back to you within 2 business days.
                 </div>
               )}
