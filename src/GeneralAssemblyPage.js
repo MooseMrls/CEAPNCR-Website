@@ -658,7 +658,7 @@ export default function GeneralAssemblyPage({ onBack, onNavigate, activeNav }) {
                 </div>
               </div>
               <p>
-                Championing Catholic education in the National Capital Region since 1990 — uniting
+                Championing Catholic education in the National Capital Region since 1941 — uniting
                 schools in faith, service, and academic excellence.
               </p>
               <div className="footer-socials">

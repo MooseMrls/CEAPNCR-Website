@@ -5,6 +5,7 @@ import edsa from "./images/edsa.jpg";
 import ga12 from "./images/ga12.jpg";
 import EventsPage from "./EventsPage";
 import GeneralAssemblyPage from "./GeneralAssemblyPage";
+import MemberSchoolsPage from "./MemberSchoolsPage";
 import Navbar from "./Navbar";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -518,8 +519,9 @@ export default function App() {
   const [nlError, setNlError]     = useState("");
   const [showEventsPage, setShowEventsPage]   = useState(false);
   const [showGAPage, setShowGAPage]           = useState(false);
+  const [showMSPage, setShowMSPage]           = useState(false);
 
-  const isHomePage = !showEventsPage && !showGAPage;
+  const isHomePage = !showEventsPage && !showGAPage && !showMSPage;
   useScrollAnimations(isHomePage);
 
   // Re-animate school cards whenever the filter changes
@@ -539,23 +541,26 @@ export default function App() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Active nav tracking via scroll
+  // Active nav tracking via scroll (only for sections actually on the home page)
   useEffect(() => {
-    if (showEventsPage || showGAPage) return;
-    const sections = NAV_LINKS.map((l) => l.toLowerCase().replace(/ /g, "-"));
+    if (showEventsPage || showGAPage || showMSPage) return;
+    const scrollSections = ["home", "about", "contact"]; 
     const onScroll = () => {
       const scrollY = window.scrollY + 120;
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const el = document.getElementById(sections[i]);
+      for (let i = scrollSections.length - 1; i >= 0; i--) {
+        const id = scrollSections[i];
+        const el = document.getElementById(id);
         if (el && el.offsetTop <= scrollY) {
-          setActiveNav(NAV_LINKS[i]);
+          // Map ID back to Nav label
+          const label = id === "home" ? "Home" : id === "about" ? "About" : "Contact";
+          setActiveNav(label);
           break;
         }
       }
     };
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
-  }, [showEventsPage, showGAPage]);
+  }, [showEventsPage, showGAPage, showMSPage]);
 
   const INQUIRY_LABELS = {
     membership:  "Membership Inquiry",
@@ -628,51 +633,65 @@ export default function App() {
     setShowEventsPage(true);
   };
 
-  const handleBackFromEvents = (sectionId = "events") => {
-    setShowEventsPage(false);
-    setTimeout(() => {
-      const el = document.getElementById(sectionId);
-      if (el) el.scrollIntoView({ behavior: "smooth" });
-    }, 100);
+  const handleGlobalNavigate = (link) => {
+    const isEvents = link === "Events";
+    const isGA = link === "General Assembly";
+    const isMS = link === "Member Schools";
+
+    // 1. Clear all pages first
+    setShowEventsPage(isEvents);
+    setShowGAPage(isGA);
+    setShowMSPage(isMS);
+
+    setActiveNav(link);
+
+    // 2. If it's a home page section, scroll to it
+    if (!isEvents && !isGA && !isMS) {
+      setTimeout(() => {
+        const id = link.toLowerCase().replace(/ /g, "-");
+        const el = document.getElementById(id);
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth" });
+        } else if (link === "Home") {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+      }, 100);
+    } else {
+      // Switch top scroll for new page
+      window.scrollTo({ top: 0, behavior: "instant" });
+    }
   };
 
-  const handleViewGA = (e) => {
-    if (e && e.preventDefault) e.preventDefault();
-    setShowGAPage(true);
-    setShowEventsPage(false);
-  };
-
-  const handleBackFromGA = (sectionId = "events") => {
-    setShowGAPage(false);
-    setTimeout(() => {
-      const el = document.getElementById(sectionId);
-      if (el) el.scrollIntoView({ behavior: "smooth" });
-    }, 100);
-  };
+  // ── MEMBER SCHOOLS PAGE ──────────────────
+  if (showMSPage) {
+    return (
+      <MemberSchoolsPage
+        onBack={() => handleGlobalNavigate("Home")}
+        onNavigate={handleGlobalNavigate}
+      />
+    );
+  }
 
   // ── GENERAL ASSEMBLY PAGE ────────────────
   if (showGAPage) {
     return (
       <GeneralAssemblyPage
-        onBack={handleBackFromGA}
+        onBack={() => handleGlobalNavigate("Home")}
         activeNav="General Assembly"
-        onNavigate={(link) => {
-          if (link === "General Assembly") return;
-          if (link === "Events") { setShowGAPage(false); setShowEventsPage(true); return; }
-          setShowGAPage(false);
-          setTimeout(() => {
-            const id = link.toLowerCase().replace(/ /g, "-");
-            const el = document.getElementById(id);
-            if (el) el.scrollIntoView({ behavior: "smooth" });
-          }, 100);
-        }}
+        onNavigate={handleGlobalNavigate}
       />
     );
   }
 
   // ── EVENTS PAGE ──────────────────────────
   if (showEventsPage) {
-    return <EventsPage onBack={handleBackFromEvents} onViewGA={handleViewGA} />;
+    return (
+      <EventsPage 
+        onBack={() => handleGlobalNavigate("Home")} 
+        onViewGA={() => handleGlobalNavigate("General Assembly")} 
+        onNavigate={handleGlobalNavigate}
+      />
+    );
   }
 
   // ── MAIN SITE ────────────────────────────
@@ -684,14 +703,7 @@ export default function App() {
       <Navbar
         activeLink={activeNav}
         scrolled={scrolled}
-        onNavigate={(link) => {
-          if (link === "Events") { setShowEventsPage(true); return; }
-          if (link === "General Assembly") { setShowGAPage(true); return; }
-          setActiveNav(link);
-          const id = link.toLowerCase().replace(/ /g, "-");
-          const el = document.getElementById(id);
-          if (el) el.scrollIntoView({ behavior: "smooth" });
-        }}
+        onNavigate={handleGlobalNavigate}
       />
 
       {/* ── HERO ───────────────────────────────── */}
@@ -704,18 +716,17 @@ export default function App() {
 
           <div className="hero-content">
             <div className="hero-text">
-              <p className="hero-eyebrow">Catholic Educational Association of the Philippines</p>
               <h1 className="hero-title">
                 Shaping<em> Catholic Education</em> in Metro Manila
               </h1>
-              <p className="hero-subtitle">Excellence · Faith · Service</p>
+              <p className="hero-subtitle">Sapientia Aetate et Gratia</p>
               <p className="hero-desc">
-                CEAP NCR unites over 120 Catholic schools across the National Capital Region,
+                CEAP NCR unites over 160+ Catholic schools across the National Capital Region,
                 advancing quality education anchored in Gospel values and a commitment to the common good.
               </p>
               <div className="hero-ctas">
                 <a href="#about"          className="btn-primary">Discover Our Mission</a>
-                <a href="#member-schools" className="btn-outline">View Member Schools</a>
+                <button className="btn-outline" onClick={() => setShowMSPage(true)}>View Member Schools</button>
               </div>
             </div>
 
@@ -725,9 +736,9 @@ export default function App() {
                   <p className="hero-card-label">At a glance</p>
                   <div className="hero-stat-row">
                     {[
-                      { Icon: Icon.GraduationCap, value: "120+", label: "Member Schools" },
-                      { Icon: Icon.Users,          value: "50K+", label: "Students Served" },
-                      { Icon: Icon.Award,          value: "35 Yrs", label: "Years of Service" },
+                      { Icon: Icon.GraduationCap, value: "160+", label: "Member Schools" },
+                      { Icon: Icon.Users,          value: "8", label: "Arch/Dioceses" },
+                      { Icon: Icon.Award,          value: "15 Cities", label: "NCR + Rizal Province" },
                     ].map(({ Icon: I, value, label }) => (
                       <div className="hero-stat-item" key={label}>
                         <div className="hero-stat-icon"><I /></div>
@@ -739,7 +750,7 @@ export default function App() {
                     ))}
                   </div>
                   <div className="hero-card-accent">
-                    <span className="hero-card-accent-year">1990</span>
+                    <span className="hero-card-accent-year">1941</span>
                     <span className="hero-card-accent-text">Founded<br />NCR Chapter</span>
                   </div>
                 </div>
@@ -805,7 +816,7 @@ export default function App() {
                 </p>
                 <p className="about-card-attr">— CEAP NCR Regional President, AY 2024–2025</p>
                 <div className="about-badge">
-                  <span className="about-badge-year">1990</span>
+                  <span className="about-badge-year">1941</span>
                   <span className="about-badge-text">Founded<br />NCR Chapter</span>
                 </div>
               </div>
@@ -838,7 +849,7 @@ export default function App() {
       </section> */}
 
          {/* ── EVENTS (Homepage Preview) ──────────── */}
-         <section id="events" className="events-section">
+         <section className="events-section">
         <div className="section-inner">
           <p className="section-label section-label--light reveal">Latest News</p>
           <h2 className="section-title section-title--light reveal reveal-delay-1">Events &amp; Announcements</h2>
@@ -883,8 +894,8 @@ export default function App() {
         </div>
       </section>
 
-      {/* ── MEMBER SCHOOLS ─────────────────────── */}
-      <section id="member-schools">
+      {/* ── MEMBER SCHOOLS (Homepage Preview) ────── */}
+      <section>
         <div className="section-inner">
           <div className="schools-header">
             <div>
@@ -920,7 +931,9 @@ export default function App() {
           </div>
 
           <div className="section-cta reveal">
-            <a href="#contact" className="btn-primary">Inquire About Membership</a>
+            <button className="btn-primary" onClick={() => setShowMSPage(true)}>
+              View More Schools
+            </button>
           </div>
         </div>
       </section>
@@ -1111,7 +1124,7 @@ export default function App() {
                 </div>
               </div>
               <p>
-                Championing Catholic education in the National Capital Region since 1990 — uniting
+                Championing Catholic education in the National Capital Region since 1941 — uniting
                 schools in faith, service, and academic excellence.
               </p>
               <div className="footer-socials">

@@ -989,30 +989,7 @@
   flex-shrink: 0;
 }
 
-.school-type {
-  display: inline-block;
-  margin-top: 0.75rem;
-  font-family: var(--font-body);
-  font-size: 0.65rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  font-weight: 600;
-  padding: 3px 12px;
-  border-radius: 99px;
-}
-
-.school-type--basic {
-  background: rgba(26, 31, 110, 0.08);
-  color: var(--navy);
-}
-.school-type--higher {
-  background: rgba(201, 168, 76, 0.12);
-  color: #8a6820;
-}
-.school-type--tech {
-  background: rgba(30, 150, 100, 0.1);
-  color: #196644;
-}
+/* Removed school-type classes */
 
 /* ─────────────────────────────────────────
    EVENTS SECTION

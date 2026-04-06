@@ -581,7 +581,7 @@ function EventCard({ ev, index }) {
 /* ─────────────────────────────────────────
    MAIN EVENTS PAGE EXPORT
 ───────────────────────────────────────── */
-export default function EventsPage({ onBack, onViewGA }) {
+export default function EventsPage({ onBack, onViewGA, onNavigate }) {
   const [activeYear, setActiveYear] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
   // eslint-disable-next-line no-unused-vars
@@ -605,9 +605,13 @@ export default function EventsPage({ onBack, onViewGA }) {
   useEffect(() => { window.scrollTo({ top: 0, behavior: "smooth" }); }, []);
 
   const handleNavigate = (link) => {
-    if (link === "Events") return;
-    if (link === "General Assembly") { onViewGA?.(); return; }
-    onBack?.(link.toLowerCase().replace(/ /g, "-"));
+    if (onNavigate) {
+      onNavigate(link);
+    } else {
+      if (link === "Events") return;
+      if (link === "General Assembly") { onViewGA?.(); return; }
+      onBack?.(link.toLowerCase().replace(/ /g, "-"));
+    }
   };
 
   const filtered = ALL_EVENTS.filter((e) => {
@@ -634,7 +638,6 @@ export default function EventsPage({ onBack, onViewGA }) {
         <div className="ep-hero__orb ep-hero__orb--2" />
         <div className="ep-hero__grid" />
         <div className="ep-hero__content">
-          <p className="ep-section-label ep-section-label--light ep-reveal">CEAP NCR · 2026</p>
           <h1 className="ep-hero__title ep-reveal ep-reveal--delay-1">
             Events &amp; <em>Announcements</em>
           </h1>
@@ -729,7 +732,7 @@ export default function EventsPage({ onBack, onViewGA }) {
                 </div>
               </div>
               <p>
-                Championing Catholic education in the National Capital Region since 1990 — uniting
+                Championing Catholic education in the National Capital Region since 1941 — uniting
                 schools in faith, service, and academic excellence.
               </p>
               <div className="footer-socials">
