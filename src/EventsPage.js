@@ -1,6 +1,18 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import "./EventsPage.css";
 import logo from "./images/logo.png";
+import ga1 from "./images/ga1.jpg";
+import ga2 from "./images/ga2.jpg";
+import ga3 from "./images/ga3.jpg";
+import ga4 from "./images/ga4.jpg";
+import ga5 from "./images/ga5.jpg";
+import ga6 from "./images/ga6.jpg";
+import ga7 from "./images/ga7.jpg";
+import ga8 from "./images/ga8.jpg";
+import ga9 from "./images/ga9.jpg";
+import ga10 from "./images/ga10.jpg";
+import ga11 from "./images/ga11.jpg";
+import ga12 from "./images/ga12.jpg";
 import Navbar from "./Navbar";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -123,23 +135,24 @@ const NAV_LINKS = ["Home", "About", "Member Schools", "Events", "General Assembl
 // ── GA 2025 real photos (replace with actual FB CDN URLs) ──
 // To get: go to the FB post → click each photo → right-click → copy image URL
 const GA_PHOTOS = [
-  // SLOT 1 – Main hero/wide shot (replace URL below)
-  "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=900&h=560&q=85",
-  // SLOT 2 – Session/talk photo
-  "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=600&h=400&q=85",
-  // SLOT 3 – Group/audience photo
-  "https://images.unsplash.com/photo-1532619675605-1ede6c2ed2b0?auto=format&fit=crop&w=600&h=400&q=85",
-  // SLOT 4 – Workshop/breakout photo
-  "https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=600&h=400&q=85",
-  // SLOT 5 – Closing/celebration photo
-  "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=600&h=400&q=85",
+  ga12,
+  ga1,
+  ga2,
+  ga3,
+  ga4,
+  ga5,
+  ga6,
+  ga7,
+  ga8,
+  ga10,
+  ga11
 ];
 
 // ── Other 2025 event photos ──
 const EVENT_PHOTOS = {
   peoplePower:    "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=800&h=480&q=80",
   seminarWorkshop:"https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=800&h=480&q=80",
-  gaHighlights:   "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=800&h=480&q=80",
+  gaHighlights:   ga9,
   nationalConv:   "https://images.unsplash.com/photo-1532619675605-1ede6c2ed2b0?auto=format&fit=crop&w=800&h=480&q=80",
   paascu:         "https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?auto=format&fit=crop&w=800&h=480&q=80",
   formation:      "https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=800&h=480&q=80",
@@ -152,7 +165,7 @@ const GENERAL_ASSEMBLY = {
   id: "ga2025",
   date: "July 29–31, 2025",
   title: "CEAP NCR General Assembly 2025",
-  tag: "General Assembly",
+  year: "2025",
   isHighlight: true,
   location: "University of Santo Tomas, Espana, Manila",
   time: "3-Day Event",
@@ -173,7 +186,7 @@ const ALL_EVENTS = [
     id: "pp2025",
     date: "February 25, 2025",
     title: "People Power Revolution Commemoration",
-    tag: "Advocacy",
+    year: "2025",
     img: EVENT_PHOTOS.peoplePower,
     location: "Member Schools Region-Wide",
     time: "Full Day (Non-Academic)",
@@ -181,36 +194,36 @@ const ALL_EVENTS = [
     fullDesc: "CEAP NCR officially recommended that all member institutions designate February 25, 2025 as a non-academic, non-working day to commemorate the 39th anniversary of the EDSA People Power Revolution. The recommendation urged schools to use the occasion to foster patriotism and civic responsibility among young people, highlighting the enduring significance of democracy and freedom in Philippine history.",
     fbPostUrl: "https://www.facebook.com/ceapncrPH/",
   },
-  {
-    id: "mapsa2025",
-    date: "March–April 2025",
-    title: "MaPSA CHRMD Seminar-Workshop on Inclusive Education",
-    tag: "Formation",
-    img: EVENT_PHOTOS.seminarWorkshop,
-    location: "Metro Manila (CEAP NCR Venues)",
-    time: "Multiple Sessions",
-    desc: "Seminar-Workshop: 'Inclusion, Mainstreaming & Accommodation: Upholding RA 11650 in Catholic Schools,' organized by MaPSA CHRMD under CEAP NCR.",
-    fullDesc: "Organized by the MaPSA CHRMD Commission under CEAP NCR, this seminar-workshop focused on empowering Catholic school human resource and management professionals in upholding Republic Act 11650, the Inclusive Education Act. Participants explored practical approaches to inclusion, mainstreaming, and accommodation for learners with special needs within the Catholic school context.",
-    fbPostUrl: "https://www.facebook.com/ceapncrPH/",
-  },
-  {
-    id: "gav2025",
-    date: "July 29–31, 2025",
-    title: "CEAP NCR General Assembly — 3-Day Highlights Video",
-    tag: "General Assembly",
-    img: EVENT_PHOTOS.gaHighlights,
-    location: "University of Santo Tomas, Manila",
-    time: "Watch on Facebook",
-    desc: "Watch the official 3-Day Highlights video capturing the energy, talks, and fellowship of the CEAP NCR General Assembly 2025 at UST.",
-    fullDesc: "CEAP NCR released the official 3-Day Highlights video of the General Assembly 2025 on their Facebook page. The video captures the full experience — from the opening Mass and keynote plenary sessions to breakout workshops and the closing program. Member schools and the broader Catholic education community are invited to view and share on the CEAP NCR Facebook page.",
-    fbVideoUrl: "https://www.facebook.com/ceapncrPH/videos/-watch-the-3-day-highlights-of-the-ceap-ncr-general-assembly-2025-experience-the/633169446492175/",
-    fbPostUrl: "https://www.facebook.com/ceapncrPH/",
-  },
+  // {
+  //   id: "mapsa2025",
+  //   date: "March–April 2025",
+  //   title: "MaPSA CHRMD Seminar-Workshop on Inclusive Education",
+  //   tag: "Formation",
+  //   img: EVENT_PHOTOS.seminarWorkshop,
+  //   location: "Metro Manila (CEAP NCR Venues)",
+  //   time: "Multiple Sessions",
+  //   desc: "Seminar-Workshop: 'Inclusion, Mainstreaming & Accommodation: Upholding RA 11650 in Catholic Schools,' organized by MaPSA CHRMD under CEAP NCR.",
+  //   fullDesc: "Organized by the MaPSA CHRMD Commission under CEAP NCR, this seminar-workshop focused on empowering Catholic school human resource and management professionals in upholding Republic Act 11650, the Inclusive Education Act. Participants explored practical approaches to inclusion, mainstreaming, and accommodation for learners with special needs within the Catholic school context.",
+  //   fbPostUrl: "https://www.facebook.com/ceapncrPH/",
+  // },
+  // {
+  //   id: "gav2025",
+  //   date: "July 29–31, 2025",
+  //   title: "CEAP NCR General Assembly — 3-Day Highlights Video",
+  //   tag: "General Assembly",
+  //   img: EVENT_PHOTOS.gaHighlights,
+  //   location: "University of Santo Tomas, Manila",
+  //   time: "Watch on Facebook",
+  //   desc: "Watch the official 3-Day Highlights video capturing the energy, talks, and fellowship of the CEAP NCR General Assembly 2025 at UST.",
+  //   fullDesc: "CEAP NCR released the official 3-Day Highlights video of the General Assembly 2025 on their Facebook page. The video captures the full experience — from the opening Mass and keynote plenary sessions to breakout workshops and the closing program. Member schools and the broader Catholic education community are invited to view and share on the CEAP NCR Facebook page.",
+  //   fbVideoUrl: "https://www.facebook.com/ceapncrPH/videos/-watch-the-3-day-highlights-of-the-ceap-ncr-general-assembly-2025-experience-the/633169446492175/",
+  //   fbPostUrl: "https://www.facebook.com/ceapncrPH/",
+  // },
   {
     id: "natconv2025",
     date: "September 30 – October 3, 2025",
     title: "CEAP National Convention 2025",
-    tag: "Convention",
+    year: "2025",
     img: EVENT_PHOTOS.nationalConv,
     location: "SMX Convention Center, Pasay City",
     time: "4-Day Event",
@@ -222,7 +235,7 @@ const ALL_EVENTS = [
     id: "paascu2025",
     date: "Ongoing 2025",
     title: "PAASCU Accreditation Preparation Clinic",
-    tag: "Accreditation",
+    year: "2025",
     img: EVENT_PHOTOS.paascu,
     location: "Catholic Educational Center, Intramuros, Manila",
     time: "9:00 AM – 3:00 PM",
@@ -234,7 +247,7 @@ const ALL_EVENTS = [
     id: "formation2025",
     date: "Ongoing 2025",
     title: "Faculty Development & Values Formation Program",
-    tag: "Formation",
+    year: "2025",
     img: EVENT_PHOTOS.formation,
     location: "Various CEAP NCR Member Institutions",
     time: "Multiple Sessions",
@@ -244,7 +257,7 @@ const ALL_EVENTS = [
   },
 ];
 
-const EVENT_TAGS = ["All", "General Assembly", "Formation", "Convention", "Advocacy", "Accreditation"];
+const EVENT_YEARS = ["All", "2026", "2025", "2024"];
 
 /* ─────────────────────────────────────────
    GSAP SCROLL ANIMATIONS HOOK
@@ -447,7 +460,7 @@ function GAHighlight({ ga }) {
             <span className="ep-ga-featured-badge">
               <Icon.Star /> 2025 Highlight Event
             </span>
-            <span className="ep-ga-tag-pill">General Assembly</span>
+            <span className="ep-ga-tag-pill">{ga.year}</span>
           </div>
 
           <div className="ep-ga-layout">
@@ -539,7 +552,7 @@ function EventCard({ ev, index }) {
     <article className={`ep-event-card ep-reveal ep-reveal--delay-${(index % 3) + 1}${ev.isHighlight ? " ep-event-card--featured" : ""}`}>
       <div className="ep-event-card__img-wrap">
         <img src={ev.img} alt={ev.title} loading="lazy" onError={(e) => { e.target.parentElement.style.background = "var(--surface)"; e.target.style.display = "none"; }} />
-        <span className={`ep-event-card__tag${ev.isHighlight ? " ep-event-card__tag--gold" : ""}`}>{ev.tag}</span>
+        <span className={`ep-event-card__tag${ev.isHighlight ? " ep-event-card__tag--gold" : ""}`}>{ev.year}</span>
         {ev.isHighlight && <span className="ep-event-card__star"><Icon.Star /> Featured</span>}
       </div>
       <div className="ep-event-card__body">
@@ -569,7 +582,7 @@ function EventCard({ ev, index }) {
    MAIN EVENTS PAGE EXPORT
 ───────────────────────────────────────── */
 export default function EventsPage({ onBack, onViewGA }) {
-  const [activeTag, setActiveTag] = useState("All");
+  const [activeYear, setActiveYear] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
   // eslint-disable-next-line no-unused-vars
   const [activeNav, setActiveNav] = useState("Events");
@@ -578,7 +591,7 @@ export default function EventsPage({ onBack, onViewGA }) {
 
   useScrollAnimations();
 
-  // Re-animate event cards when search or tag filter changes
+  // Re-animate event cards when search or year filter changes
   useEffect(() => {
     const cards = gsap.utils.toArray(".ep-event-card");
     if (!cards.length) return;
@@ -587,7 +600,7 @@ export default function EventsPage({ onBack, onViewGA }) {
       { y: 30, opacity: 0 },
       { y: 0, opacity: 1, duration: 0.5, stagger: 0.08, ease: "power2.out" }
     );
-  }, [activeTag, searchQuery]);
+  }, [activeYear, searchQuery]);
 
   useEffect(() => { window.scrollTo({ top: 0, behavior: "smooth" }); }, []);
 
@@ -598,12 +611,12 @@ export default function EventsPage({ onBack, onViewGA }) {
   };
 
   const filtered = ALL_EVENTS.filter((e) => {
-    const matchTag = activeTag === "All" || e.tag === activeTag;
+    const matchYear = activeYear === "All" || e.year === activeYear;
     const matchSearch =
       e.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       e.desc.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      e.tag.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchTag && matchSearch;
+      (e.year && e.year.toLowerCase().includes(searchQuery.toLowerCase()));
+    return matchYear && matchSearch;
   });
 
   const nonGAEvents = filtered.filter((e) => e.id !== "ga2025");
@@ -654,14 +667,14 @@ export default function EventsPage({ onBack, onViewGA }) {
               aria-label="Search events"
             />
           </div>
-          <div className="ep-tag-filters" role="group" aria-label="Filter by category">
-            {EVENT_TAGS.map((tag) => (
+          <div className="ep-tag-filters" role="group" aria-label="Filter by year">
+            {EVENT_YEARS.map((year) => (
               <button
-                key={tag}
-                className={`ep-filter-btn ${activeTag === tag ? "ep-filter-btn--active" : ""}`}
-                onClick={() => setActiveTag(tag)}
+                key={year}
+                className={`ep-filter-btn ${activeYear === year ? "ep-filter-btn--active" : ""}`}
+                onClick={() => setActiveYear(year)}
               >
-                {tag}
+                {year}
               </button>
             ))}
           </div>

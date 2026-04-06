@@ -1,6 +1,22 @@
 import { useState, useEffect, useRef } from "react";
 import "./GeneralAssemblyPage.css";
 import logo from "./images/logo.png";
+import ga1 from "./images/ga1.jpg";
+import ga2 from "./images/ga2.jpg";
+import ga3 from "./images/ga3.jpg";
+import ga4 from "./images/ga4.jpg";
+import ga5 from "./images/ga5.jpg";
+import ga6 from "./images/ga6.jpg";
+import ga7 from "./images/ga7.jpg";
+import ga8 from "./images/ga8.jpg";
+import ga9 from "./images/ga9.jpg";
+import ga10 from "./images/ga10.jpg";
+import ga11 from "./images/ga11.jpg";
+import ga12 from "./images/ga12.jpg";
+import sonny from "./images/sonny.png";
+import raymond from "./images/raymond.jpg";
+import joseph from "./images/joseph.jpg";
+import rhodora from "./images/rhodora.jpg";
 import Navbar from "./Navbar";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -150,21 +166,24 @@ const PROGRAM_DAYS = [
 ];
 
 const GALLERY_IMAGES = [
-  { id: "photo-1540575467063-178a50c2df87", caption: "Opening Plenary at UST" },
-  { id: "photo-1524178232363-1fb2b075b655", caption: "Breakout Session — Track B" },
-  { id: "photo-1509062522246-3755977927d7", caption: "Panel Discussion" },
-  { id: "photo-1577896851231-70ef18881754", caption: "Morning Reflection" },
-  { id: "photo-1427504494785-3a9ca7044f45", caption: "Community Fellowship" },
-  { id: "photo-1488190211105-8b0e65b80b4e", caption: "Workshop Session" },
-  { id: "photo-1532619675605-1ede6c2ed2b0", caption: "Delegates' Night" },
-  { id: "photo-1523050854058-8df90110c9f1", caption: "Closing Mass" },
+  { src: ga1, caption: "Opening Plenary at UST", id: "ga1" },
+  { src: ga2, caption: "Breakout Session — Track B", id: "ga2" },
+  { src: ga3, caption: "Panel Discussion", id: "ga3" },
+  { src: ga4, caption: "Morning Reflection", id: "ga4" },
+  { src: ga5, caption: "Community Fellowship", id: "ga5" },
+  { src: ga6, caption: "Workshop Session", id: "ga6" },
+  { src: ga7, caption: "Delegates' Night", id: "ga7" },
+  { src: ga8, caption: "Closing Mass", id: "ga8" },
+  { src: ga9, caption: "Assembly Highlights", id: "ga9" },
+  { src: ga10, caption: "Networking and Fellowship", id: "ga10" },
+  { src: ga11, caption: "Continuing the Mission", id: "ga11" },
 ];
 
 const SPEAKERS = [
-  { name: "Most Rev. Bishop Ramon Arguelles",  role: "Ecclesiastical Adviser, CEAP NCR",        img: "photo-1519085360753-af0119f7cbe7" },
-  { name: "Sr. Mary Therese Dy, OSB",          role: "CEAP NCR President",                       img: "photo-1573496359142-b8d87734a5a2" },
-  { name: "Dr. Jose Miguel Luz",               role: "Education Reform Advocate",                img: "photo-1472099645785-5658abf4ff4e" },
-  { name: "Dr. Evangeline Bautista",           role: "DepEd NCR Regional Director",              img: "photo-1580489944761-15a19d654956" },
+  { name: "Hon. Juan Edgardo “Sonny” M. Angara",  role: "Secretary of the Department of Education",        img: sonny },
+  { name: "Fr. Raymond Joseph L. Arre",          role: "Superintendent, Diocese of Cubao Educational System (DOCES),Chair, CEAP Superintendents Conference Vice President, MaPSA",                       img: raymond },
+  { name: "Atty. Joseph Noel M. Estrada",               role: "Sr. Managing Partner, Estrada and Aquino Law Office",                img: joseph },
+  { name: "Dr. Rhodora Angela F. Ferrer",           role: "Executive Director, PEAC",              img: rhodora },
 ];
 
 const HIGHLIGHTS = [
@@ -176,9 +195,7 @@ const HIGHLIGHTS = [
   { label: "3-Day Highlights Video",   desc: "Full recap video now available on the CEAP NCR Facebook page." },
 ];
 
-function unsplashUrl(id, w = 800, h = 500) {
-  return `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${w}&h=${h}&q=80`;
-}
+
 
 /* ─── LIGHTBOX ───────────────────────────── */
 function Lightbox({ images, activeIndex, onClose, onPrev, onNext }) {
@@ -197,7 +214,7 @@ function Lightbox({ images, activeIndex, onClose, onPrev, onNext }) {
       <button className="ga-lightbox-close" onClick={onClose}><Icon.X /></button>
       <button className="ga-lightbox-prev" onClick={(e) => { e.stopPropagation(); onPrev(); }}><Icon.ChevronLeft /></button>
       <div className="ga-lightbox-content" onClick={(e) => e.stopPropagation()}>
-        <img src={unsplashUrl(images[activeIndex].id, 1200, 800)} alt={images[activeIndex].caption} />
+        <img src={images[activeIndex].src} alt={images[activeIndex].caption} />
         <p className="ga-lightbox-caption">{images[activeIndex].caption}</p>
       </div>
       <button className="ga-lightbox-next" onClick={(e) => { e.stopPropagation(); onNext(); }}><Icon.ChevronRight /></button>
@@ -385,7 +402,7 @@ export default function GeneralAssemblyPage({ onBack, onNavigate, activeNav }) {
             </div>
             <div className="ga-overview-img ga-reveal">
               <img
-                src={unsplashUrl("photo-1540575467063-178a50c2df87", 640, 460)}
+                src={ga12}
                 alt="General Assembly overview"
                 loading="lazy"
                 decoding="async"
@@ -482,7 +499,7 @@ export default function GeneralAssemblyPage({ onBack, onNavigate, activeNav }) {
               <div className="ga-speaker-card" key={s.name}>
                 <div className="ga-speaker-img-wrap">
                   <img
-                    src={unsplashUrl(s.img, 300, 300)}
+                    src={s.img}
                     alt={s.name}
                     loading="lazy"
                     decoding="async"
@@ -495,9 +512,6 @@ export default function GeneralAssemblyPage({ onBack, onNavigate, activeNav }) {
               </div>
             ))}
           </div>
-          <p className="ga-speakers-note ga-reveal">
-            * Speaker information is for illustrative purposes. Actual speakers will be confirmed closer to the event date.
-          </p>
         </div>
       </section>
 
@@ -517,7 +531,7 @@ export default function GeneralAssemblyPage({ onBack, onNavigate, activeNav }) {
             <div className="ga-video-main ga-reveal">
               <div className="ga-video-thumb">
                 <img
-                  src={unsplashUrl("photo-1540575467063-178a50c2df87", 900, 520)}
+                  src={ga2}
                   alt="GA 2025 Highlights Video"
                   loading="lazy"
                   decoding="async"
@@ -547,13 +561,13 @@ export default function GeneralAssemblyPage({ onBack, onNavigate, activeNav }) {
             {/* Secondary clips */}
             <div className="ga-video-side">
               {[
-                { title: "Opening Plenary Recap",      img: "photo-1524178232363-1fb2b075b655", dur: "12:34" },
-                { title: "Delegates' Night Highlights", img: "photo-1532619675605-1ede6c2ed2b0", dur: "8:15" },
-                { title: "Closing Mass & Declaration",  img: "photo-1577896851231-70ef18881754", dur: "15:02" },
+                { title: "Opening Plenary Recap",      img: ga3, dur: "12:34" },
+                { title: "Delegates' Night Highlights", img: ga4, dur: "8:15" },
+                { title: "Closing Mass & Declaration",  img: ga5, dur: "15:02" },
               ].map((v) => (
                 <div className="ga-video-clip ga-reveal" key={v.title}>
                   <div className="ga-video-clip-thumb">
-                    <img src={unsplashUrl(v.img, 320, 200)} alt={v.title} loading="lazy" decoding="async" />
+                    <img src={v.img} alt={v.title} loading="lazy" decoding="async" />
                     <div className="ga-video-clip-play"><Icon.Play /></div>
                     <span className="ga-video-clip-dur">{v.dur}</span>
                   </div>
@@ -587,7 +601,7 @@ export default function GeneralAssemblyPage({ onBack, onNavigate, activeNav }) {
                 aria-label={`View photo: ${img.caption}`}
               >
                 <img
-                  src={unsplashUrl(img.id, i === 0 ? 900 : 500, i === 0 ? 560 : 380)}
+                  src={img.src}
                   alt={img.caption}
                   loading="lazy"
                   decoding="async"

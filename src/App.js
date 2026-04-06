@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import "./App.css";
 import logo from "./images/logo.png";
+import edsa from "./images/edsa.jpg";
+import ga12 from "./images/ga12.jpg";
 import EventsPage from "./EventsPage";
 import GeneralAssemblyPage from "./GeneralAssemblyPage";
 import Navbar from "./Navbar";
@@ -179,7 +181,7 @@ const GENERAL_ASSEMBLY = {
   highlight: true,
   location: "University of Santo Tomas, Espana, Manila",
   time: "3 Days",
-  img: EVENT_IMAGE_IDS[0],
+  img: ga12,
   desc: "The flagship three-day gathering of CEAP NCR member schools at the University of Santo Tomas — uniting Catholic educators, administrators, and school leaders from across Metro Manila.",
   fullDesc: "The CEAP NCR General Assembly 2025 was a landmark three-day event held at the University of Santo Tomas, bringing together school heads, administrators, and Catholic educators from across the National Capital Region. Anchored on the theme 'Living Synodality as Pilgrims of Hope,' the assembly featured plenary sessions, breakout discussions, and a highlight video capturing the energy and spirit of the entire event. Watch the 3-Day Highlights video on the CEAP NCR Facebook page for the full experience.",
   gallery: [
@@ -196,17 +198,15 @@ const ALL_EVENTS = [
     date: "February 25, 2025",
     title: "People Power Revolution Commemoration",
     desc: "CEAP NCR strongly encourages all member schools to observe February 25 as a non-academic day in honor of the EDSA People Power Revolution anniversary.",
-    tag: "Advocacy",
-    img: EVENT_IMAGE_IDS[8],
+    img: edsa,
     location: "Member Schools Region-Wide",
     time: "School Day",
     fullDesc: "CEAP NCR officially recommended that all member institutions designate February 25, 2025 as a non-academic, non-working day to commemorate the 39th anniversary of the EDSA People Power Revolution. The recommendation urged schools to use the occasion to foster patriotism and civic responsibility among young people, highlighting the enduring significance of democracy and freedom in Philippine history.",
   },
   {
     date: "March–April 2025",
-    title: "MaPSA CHRMD Seminar-Workshop on Inclusive Education",
-    desc: "Seminar-Workshop on Inclusive Education: 'Inclusion, Mainstreaming & Accommodation: Upholding RA 11650 in Catholic Schools,' organized by MaPSA CHRMD under CEAP NCR.",
-    tag: "Formation",
+    title: "Strengthening Systems for a Seamless Strengthened Senior High School Full Implementation",
+    desc: "Seminar-Workshop on Inclusive Education: this workshop is designed to provide you with the tools and strategies needed for success.",
     img: EVENT_IMAGE_IDS[1],
     location: "Metro Manila (CEAP NCR Venues)",
     time: "TBA",
@@ -216,7 +216,6 @@ const ALL_EVENTS = [
     date: "July 29–31, 2025",
     title: "3-Day CEAP NCR General Assembly Highlights Video",
     desc: "Watch the official 3-Day Highlights video of the CEAP NCR General Assembly 2025, capturing the energy, talks, and fellowship of the entire event at UST.",
-    tag: "General Assembly",
     img: EVENT_IMAGE_IDS[7],
     location: "University of Santo Tomas, Manila",
     time: "See Facebook Page",
@@ -226,7 +225,6 @@ const ALL_EVENTS = [
     date: "September 30 – October 3, 2025",
     title: "CEAP National Convention 2025",
     desc: "The national gathering of Catholic educational institutions across the Philippines, held at SMX Convention Center Manila with over 3,500 delegates.",
-    tag: "Convention",
     img: EVENT_IMAGE_IDS[0],
     location: "SMX Convention Center, Pasay City",
     time: "4 Days",
@@ -236,7 +234,6 @@ const ALL_EVENTS = [
     date: "Ongoing 2025",
     title: "PAASCU Accreditation Preparation Clinic",
     desc: "Intensive guidance sessions for schools undergoing first-time or renewal PAASCU accreditation — covering documentation, site visit readiness, and compliance.",
-    tag: "Accreditation",
     img: EVENT_IMAGE_IDS[6],
     location: "Catholic Educational Center, Intramuros, Manila",
     time: "9:00 AM – 3:00 PM",
@@ -246,7 +243,6 @@ const ALL_EVENTS = [
     date: "Ongoing 2025",
     title: "Faculty Development & Values Formation Program",
     desc: "Year-round professional growth program for Catholic school educators, integrating pedagogy, spirituality, and leadership within the NCR member school network.",
-    tag: "Formation",
     img: EVENT_IMAGE_IDS[5],
     location: "Various CEAP NCR Member Institutions",
     time: "Multiple Sessions",
@@ -273,7 +269,7 @@ const TICKER_ITEMS = [
   "Theme: Living Synodality as Pilgrims of Hope",
   "People Power Commemoration — February 25",
   "CEAP National Convention — Sept 30–Oct 3, SMX Manila",
-  "MaPSA CHRMD Inclusive Education Seminar-Workshop",
+  "Strengthening Systems for a Seamless Strengthened Senior High School Full Implementation",
 ];
 
 const typeClass = {
@@ -853,7 +849,7 @@ export default function App() {
               <div key={e.title} className={`event-card reveal reveal-delay-${i + 1}`}>
                 <div className="event-card__image">
                   <img
-                    src={unsplashUrl(e.img, 600, 300)}
+                    src={typeof e.img === 'string' && e.img.startsWith("photo-") ? unsplashUrl(e.img, 600, 300) : e.img}
                     alt={e.title}
                     loading="lazy"
                     onError={(ev) => { ev.target.parentElement.style.display = "none"; }}
