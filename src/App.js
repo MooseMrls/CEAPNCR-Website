@@ -6,6 +6,7 @@ import ga12 from "./images/ga12.jpg";
 import EventsPage from "./EventsPage";
 import GeneralAssemblyPage from "./GeneralAssemblyPage";
 import MemberSchoolsPage from "./MemberSchoolsPage";
+import AboutPage from "./AboutPage";
 import Navbar from "./Navbar";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -147,18 +148,18 @@ const Icon = {
 const NAV_LINKS = ["Home", "About", "Events", "General Assembly", "Member Schools", "Contact"];
 
 const MEMBER_SCHOOLS = [
-  { name: "De La Salle Santiago Zobel School", location: "Muntinlupa City",   type: "Basic Education" },
-  { name: "Ateneo de Manila University",       location: "Quezon City",        type: "Higher Education" },
-  { name: "San Beda University",               location: "Manila",             type: "Higher Education" },
-  { name: "Lourdes School of Mandaluyong",     location: "Mandaluyong City",   type: "Basic Education" },
-  { name: "Xavier School",                     location: "San Juan City",      type: "Basic Education" },
-  { name: "Assumption College",                location: "Makati City",        type: "Higher Education" },
-  { name: "Holy Spirit of Novaliches",         location: "Quezon City",        type: "Basic Education" },
-  { name: "St. Paul College of Pasig",         location: "Pasig City",         type: "Higher Education" },
-  { name: "Don Bosco Technical College",       location: "Mandaluyong City",   type: "Technical-Vocational" },
-  { name: "Miriam College",                    location: "Quezon City",        type: "Higher Education" },
-  { name: "Poveda Learning Center",            location: "Quezon City",        type: "Basic Education" },
-  { name: "La Salle Greenhills",               location: "Mandaluyong City",   type: "Basic Education" },
+  { name: "De La Salle Santiago Zobel School", location: "Muntinlupa City",},
+  { name: "Ateneo de Manila University",       location: "Quezon City",},
+  { name: "San Beda University",               location: "Manila",},
+  { name: "Lourdes School of Mandaluyong",     location: "Mandaluyong City",},
+  { name: "Xavier School",                     location: "San Juan City",},
+  { name: "Assumption College",                location: "Makati City",},
+  { name: "Holy Spirit of Novaliches",         location: "Quezon City",},
+  { name: "St. Paul College of Pasig",         location: "Pasig City",},
+  { name: "Don Bosco Technical College",       location: "Mandaluyong City",},
+  { name: "Miriam College",                    location: "Quezon City",},
+  { name: "Poveda Learning Center",            location: "Quezon City",},
+  { name: "La Salle Greenhills",               location: "Mandaluyong City",},
 ];
 
 /* Unsplash photo IDs mapped to plausible catholic-education themes */
@@ -520,8 +521,9 @@ export default function App() {
   const [showEventsPage, setShowEventsPage]   = useState(false);
   const [showGAPage, setShowGAPage]           = useState(false);
   const [showMSPage, setShowMSPage]           = useState(false);
+  const [showAboutPage, setShowAboutPage]     = useState(false);
 
-  const isHomePage = !showEventsPage && !showGAPage && !showMSPage;
+  const isHomePage = !showEventsPage && !showGAPage && !showMSPage && !showAboutPage;
   useScrollAnimations(isHomePage);
 
   // Re-animate school cards whenever the filter changes
@@ -543,7 +545,7 @@ export default function App() {
 
   // Active nav tracking via scroll (only for sections actually on the home page)
   useEffect(() => {
-    if (showEventsPage || showGAPage || showMSPage) return;
+    if (showEventsPage || showGAPage || showMSPage || showAboutPage) return;
     const scrollSections = ["home", "about", "contact"]; 
     const onScroll = () => {
       const scrollY = window.scrollY + 120;
@@ -560,7 +562,7 @@ export default function App() {
     };
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
-  }, [showEventsPage, showGAPage, showMSPage]);
+  }, [showEventsPage, showGAPage, showMSPage, showAboutPage]);
 
   const INQUIRY_LABELS = {
     membership:  "Membership Inquiry",
@@ -637,16 +639,18 @@ export default function App() {
     const isEvents = link === "Events";
     const isGA = link === "General Assembly";
     const isMS = link === "Member Schools";
+    const isAbout = link === "About";
 
     // 1. Clear all pages first
     setShowEventsPage(isEvents);
     setShowGAPage(isGA);
     setShowMSPage(isMS);
+    setShowAboutPage(isAbout);
 
     setActiveNav(link);
 
     // 2. If it's a home page section, scroll to it
-    if (!isEvents && !isGA && !isMS) {
+    if (!isEvents && !isGA && !isMS && !isAbout) {
       setTimeout(() => {
         const id = link.toLowerCase().replace(/ /g, "-");
         const el = document.getElementById(id);
@@ -661,6 +665,16 @@ export default function App() {
       window.scrollTo({ top: 0, behavior: "instant" });
     }
   };
+
+  // ── ABOUT PAGE ───────────────────────────
+  if (showAboutPage) {
+    return (
+      <AboutPage
+        onBack={() => handleGlobalNavigate("Home")}
+        onNavigate={handleGlobalNavigate}
+      />
+    );
+  }
 
   // ── MEMBER SCHOOLS PAGE ──────────────────
   if (showMSPage) {
@@ -814,7 +828,7 @@ export default function App() {
                   "Catholic education does not merely aim at the transmission of knowledge; it forms the
                   whole person — mind, heart, and spirit — for service to God and to others."
                 </p>
-                <p className="about-card-attr">— CEAP NCR Regional President, AY 2024–2025</p>
+                <p className="about-card-attr">— CEAP NCR Regional President</p>
                 <div className="about-badge">
                   <span className="about-badge-year">1941</span>
                   <span className="about-badge-text">Founded<br />NCR Chapter</span>
@@ -1203,7 +1217,7 @@ export default function App() {
           </div>
 
           <div className="footer-bottom">
-            <p>Developed By: Sean Morales</p>
+            <p>Developed By: <a href="https://sean-m.vercel.app" target="_blank" rel="noopener noreferrer" className="footer-dev-link">Sean Morales</a></p>
             <p>© 2026 Catholic Educational Association of the Philippines – National Capital Region. All Rights Reserved.</p>
             <p>
               <button className="footer-bottom-link" onClick={() => {}}>Privacy Policy</button>

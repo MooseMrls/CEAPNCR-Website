@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import "./MemberSchoolsPage.css";
 import Navbar from "./Navbar";
 import logo from "./images/logo.png";
 import { gsap } from "gsap";
@@ -315,7 +316,7 @@ export default function MemberSchoolsPage({ onBack, onNavigate }) {
   const [newsletterDone, setNewsletterDone]   = useState(false);
   const [nlLoading, setNlLoading] = useState(false);
   const [nlError, setNlError]     = useState("");
-  const [dioceseFilter, setDioceseFilter] = useState("All Dioceses");
+  const [dioceseFilter, setDioceseFilter] = useState("Archdiocese of Manila");
   const gridRef = useRef(null);
 
   // Scroll to top on mount
@@ -326,14 +327,29 @@ export default function MemberSchoolsPage({ onBack, onNavigate }) {
   // GSAP — hero + cards on mount
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.fromTo(".ms-hero-content",
-        { y: 50, opacity: 0 },
-        { y: 0, opacity: 1, duration: 1, ease: "power3.out" }
-      );
-      gsap.fromTo(".ms-stats-item",
-        { y: 30, opacity: 0, scale: 0.92 },
-        { y: 0, opacity: 1, scale: 1, duration: 0.7, stagger: 0.1, ease: "back.out(1.4)", delay: 0.3 }
-      );
+      const mm = gsap.matchMedia();
+
+      mm.add("(prefers-reduced-motion: no-preference)", () => {
+        // Hero — staggered fade up (matches EventsPage ep-hero pattern)
+        const heroEls = gsap.utils.toArray(".ms-hero .ep-reveal");
+        if (heroEls.length) {
+          gsap.fromTo(heroEls,
+            { y: 36, opacity: 0 },
+            { y: 0, opacity: 1, duration: 0.9, stagger: 0.14, ease: "power3.out", delay: 0.2 }
+          );
+        }
+        // Stats badges cascade
+        gsap.fromTo(".ms-stats-item",
+          { y: 30, opacity: 0, scale: 0.92 },
+          { y: 0, opacity: 1, scale: 1, duration: 0.7, stagger: 0.1, ease: "back.out(1.4)", delay: 0.55 }
+        );
+      });
+
+      mm.add("(prefers-reduced-motion: reduce)", () => {
+        gsap.utils.toArray(".ep-reveal, .ms-stats-item").forEach((el) => {
+          gsap.set(el, { opacity: 1, y: 0, scale: 1 });
+        });
+      });
     });
     return () => ctx.revert();
   }, []);
@@ -394,94 +410,40 @@ export default function MemberSchoolsPage({ onBack, onNavigate }) {
       />
 
       {/* ── HERO ─────────────────────────────── */}
-      <section style={{
-        background: "linear-gradient(160deg, var(--navy-dark) 0%, var(--navy) 55%, var(--navy-mid) 100%)",
-        padding: "0",
-        paddingTop: "var(--nav-height)",
-        position: "relative",
-        overflow: "hidden",
-      }}>
-        {/* Decorative grid */}
-        <div style={{
-          position: "absolute", inset: 0,
-          backgroundImage: "linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)",
-          backgroundSize: "72px 72px",
-          maskImage: "radial-gradient(ellipse at center, black 20%, transparent 80%)",
-          pointerEvents: "none",
-        }} />
-        {/* Orb */}
-        <div style={{
-          position: "absolute", width: 500, height: 500,
-          right: -120, top: -80, borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(46,52,190,0.28) 0%, transparent 70%)",
-          animation: "floatA 24s ease-in-out infinite",
-          pointerEvents: "none",
-        }} />
-        <div style={{
-          position: "absolute", width: 320, height: 320,
-          left: -60, bottom: -40, borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(201,168,76,0.11) 0%, transparent 70%)",
-          animation: "floatB 30s ease-in-out infinite",
-          pointerEvents: "none",
-        }} />
-
-        <div className="ms-hero-content" style={{
-          maxWidth: 1320, margin: "0 auto", padding: "5rem 2rem 4rem",
-          position: "relative", zIndex: 2,
-        }}>
-
-          <p style={{
-            fontFamily: "var(--font-body)", fontSize: "0.68rem", letterSpacing: "0.28em",
-            textTransform: "uppercase", color: "var(--gold-light)",
-            display: "flex", alignItems: "center", gap: 10, marginBottom: "0.9rem",
-          }}>
-            Our Network
-            <span style={{ width: 36, height: 1, background: "var(--gold-light)", display: "inline-block" }} />
-          </p>
-          <h1 style={{
-            fontFamily: "var(--font-heading)", fontSize: "clamp(2.4rem, 5vw, 4.2rem)",
-            fontWeight: 800, color: "white", lineHeight: 1.08, marginBottom: "1rem",
-          }}>
-            Member 
-            <em style={{ color: "var(--gold)", fontStyle: "italic" }}> Schools</em>
+      <header className="ep-hero ms-hero">
+        <div className="ep-hero__overlay" />
+        <div className="ep-hero__orb ep-hero__orb--1" />
+        <div className="ep-hero__orb ep-hero__orb--2" />
+        <div className="ep-hero__grid" />
+        <div className="ep-hero__content ms-hero-content">
+          <h1 className="ep-hero__title ep-reveal ep-reveal--delay-1">
+            Member <em>Schools</em>
           </h1>
-          <p style={{
-            fontFamily: "var(--font-body)", fontSize: "1rem",
-            color: "rgba(255,255,255,0.65)", maxWidth: 560, lineHeight: 1.85, marginBottom: "3rem",
-          }}>
+          <p className="ep-hero__sub ep-reveal ep-reveal--delay-2">
             Discover the 179 Catholic educational institutions united under CEAP NCR — serving learners
             across Metro Manila and Rizal Province in faith, excellence, and service.
           </p>
 
           {/* Stats strip */}
-          <div style={{ display: "flex", gap: "2rem", flexWrap: "wrap" }}>
+          <div className="ms-stats-strip ep-reveal ep-reveal--delay-3">
             {[
               { value: "179", label: "Member Schools", icon: <Icon.GraduationCap /> },
-              { value: "8",    label: "Arch/Dioceses",  icon: <Icon.Building /> },
-              { value: "15",   label: "Cities & Municipalities", icon: <Icon.MapPin /> },
+              { value: "8",   label: "Arch/Dioceses",  icon: <Icon.Building /> },
+              { value: "15",  label: "Cities & Municipalities", icon: <Icon.MapPin /> },
             ].map(({ value, label, icon }) => (
-              <div key={label} className="ms-stats-item" style={{
-                display: "flex", alignItems: "center", gap: 12,
-                background: "rgba(255,255,255,0.07)", backdropFilter: "blur(12px)",
-                border: "1px solid rgba(255,255,255,0.12)", borderRadius: "var(--radius-md)",
-                padding: "1rem 1.5rem",
-              }}>
-                <div style={{
-                  width: 36, height: 36, borderRadius: "var(--radius-sm)",
-                  background: "rgba(201,168,76,0.2)", color: "var(--gold)",
-                  display: "flex", alignItems: "center", justifyContent: "center",
-                }}>
-                  <span style={{ width: 18, height: 18 }}>{icon}</span>
+              <div key={label} className="ms-stats-item">
+                <div className="ms-stats-item__icon">
+                  <span>{icon}</span>
                 </div>
                 <div>
-                  <div style={{ fontFamily: "var(--font-heading)", fontSize: "1.4rem", fontWeight: 700, color: "white", lineHeight: 1 }}>{value}</div>
-                  <div style={{ fontFamily: "var(--font-body)", fontSize: "0.72rem", color: "rgba(255,255,255,0.55)", marginTop: 2, letterSpacing: "0.05em" }}>{label}</div>
+                  <div className="ms-stats-item__value">{value}</div>
+                  <div className="ms-stats-item__label">{label}</div>
                 </div>
               </div>
             ))}
           </div>
         </div>
-      </section>
+      </header>
 
       {/* ── SEARCH & FILTER BAR ───────────────── */}
       <div style={{
@@ -747,7 +709,7 @@ export default function MemberSchoolsPage({ onBack, onNavigate }) {
           </div>
 
           <div className="footer-bottom">
-            <p>Developed By: Sean Morales</p>
+            <p>Developed By: <a href="https://sean-m.vercel.app" target="_blank" rel="noopener noreferrer" className="footer-dev-link">Sean Morales</a></p>
             <p>© 2026 Catholic Educational Association of the Philippines – National Capital Region. All Rights Reserved.</p>
             <p>
               <button className="footer-bottom-link" onClick={() => {}}>Privacy Policy</button>

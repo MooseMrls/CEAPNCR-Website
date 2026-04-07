@@ -812,7 +812,7 @@ export default function EventsPage({ onBack, onViewGA, onNavigate }) {
           </div>
 
           <div className="footer-bottom">
-            <p>Developed By: Sean Morales</p>
+            <p>Developed By: <a href="https://sean-m.vercel.app" target="_blank" rel="noopener noreferrer" className="footer-dev-link">Sean Morales</a></p>
             <p>© 2026 Catholic Educational Association of the Philippines – National Capital Region. All Rights Reserved.</p>
             <p>
               <button className="footer-bottom-link" onClick={() => {}}>Privacy Policy</button>

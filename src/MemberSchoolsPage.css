@@ -1,0 +1,208 @@
+@import './global.css';
+
+/* ─────────────────────────────────────────
+   MEMBER SCHOOLS PAGE
+   Hero uses the shared ep-hero system
+   (matching EventsPage & AboutPage)
+───────────────────────────────────────── */
+
+/* ── Animations ── */
+@keyframes gradientShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+@keyframes floatA {
+  0%, 100% { transform: translateY(0) translateX(0); }
+  33%       { transform: translateY(-16px) translateX(10px); }
+  66%       { transform: translateY(8px) translateX(-6px); }
+}
+@keyframes floatB {
+  0%, 100% { transform: translateY(0) translateX(0); }
+  40%       { transform: translateY(12px) translateX(-10px); }
+  70%       { transform: translateY(-6px) translateX(8px); }
+}
+
+/* ─────────────────────────────────────────
+   HERO — shared ep-hero structure
+───────────────────────────────────────── */
+.ep-hero {
+  position: relative;
+  min-height: 54vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(145deg, var(--navy-dark) 0%, var(--navy) 55%, #251a6b 100%);
+  overflow: hidden;
+}
+
+.ep-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    220deg,
+    rgba(201, 168, 76, 0.07) 0%,
+    transparent 40%,
+    rgba(46, 52, 190, 0.1) 80%,
+    transparent 100%
+  );
+  background-size: 200% 200%;
+  animation: gradientShift 18s ease infinite;
+  pointer-events: none;
+}
+
+.ep-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 30% 70%, rgba(201, 168, 76, 0.12) 0%, transparent 55%);
+  pointer-events: none;
+}
+
+.ep-hero__orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+}
+
+.ep-hero__orb--1 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(46, 52, 190, 0.30) 0%, transparent 70%);
+  top: -100px;
+  right: -80px;
+  animation: floatA 24s ease-in-out infinite;
+}
+
+.ep-hero__orb--2 {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(201, 168, 76, 0.14) 0%, transparent 70%);
+  bottom: 0;
+  left: 10%;
+  animation: floatB 30s ease-in-out infinite;
+}
+
+.ep-hero__grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+}
+
+.ep-hero__content {
+  position: relative;
+  z-index: 1;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: calc(var(--nav-height) + 2rem) 2rem 3rem;
+  text-align: center;
+  width: 100%;
+}
+
+.ep-hero__title {
+  font-family: var(--font-heading);
+  font-size: clamp(2.6rem, 6vw, 4rem);
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.15;
+  margin-bottom: 1.1rem;
+}
+
+.ep-hero__title em {
+  font-style: italic;
+  color: var(--gold-light);
+}
+
+.ep-hero__sub {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.65);
+  max-width: 560px;
+  margin: 0 auto 1.75rem;
+  line-height: 1.75;
+}
+
+/* ep-reveal — GSAP sets initial opacity: 0 and drives reveal */
+.ep-reveal { opacity: 0; }
+
+/* ─────────────────────────────────────────
+   STATS STRIP
+───────────────────────────────────────── */
+.ms-stats-strip {
+  display: flex;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 0.25rem;
+}
+
+.ms-stats-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-md);
+  padding: 1rem 1.5rem;
+  transition: background 0.25s, border-color 0.25s;
+}
+
+.ms-stats-item:hover {
+  background: rgba(255, 255, 255, 0.11);
+  border-color: rgba(201, 168, 76, 0.3);
+}
+
+.ms-stats-item__icon {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  background: rgba(201, 168, 76, 0.2);
+  color: var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.ms-stats-item__icon span {
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ms-stats-item__value {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: white;
+  line-height: 1;
+}
+
+.ms-stats-item__label {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.55);
+  margin-top: 2px;
+  letter-spacing: 0.05em;
+}
+
+/* ─────────────────────────────────────────
+   RESPONSIVE
+───────────────────────────────────────── */
+@media (max-width: 600px) {
+  .ms-stats-strip {
+    gap: 0.75rem;
+  }
+  .ms-stats-item {
+    padding: 0.75rem 1rem;
+    flex: 1 1 140px;
+  }
+}
