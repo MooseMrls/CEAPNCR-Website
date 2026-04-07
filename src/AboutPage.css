@@ -511,8 +511,8 @@
 }
 
 .committee-card__avatar {
-  width: 56px;
-  height: 56px;
+  width: 110px;
+  height: 110px;
   border-radius: 50%;
   background: linear-gradient(135deg, var(--navy-light), var(--navy));
   border: 2px solid rgba(201, 168, 76, 0.3);
@@ -520,10 +520,10 @@
   align-items: center;
   justify-content: center;
   font-family: var(--font-heading);
-  font-size: 1.1rem;
+  font-size: 1.5rem;
   font-weight: 700;
   color: var(--gold-light);
-  margin: 0 auto 1rem;
+  margin: 0 auto 1.25rem;
   letter-spacing: 0.02em;
   transition: border-color 0.3s, transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
 }

@@ -7,6 +7,13 @@ import kenImg from "./images/regional/ken.png";
 import danielImg from "./images/regional/daniel.png";
 import aileenImg from "./images/regional/aileen.png";
 import christmarImg from "./images/regional/christmar.png";
+import noelImg from "./images/regional/committee/noel.png";
+import pingImg from "./images/regional/committee/ping.png";
+import myreenImg from "./images/regional/committee/myreen.png";
+import elmgayImg from "./images/regional/committee/elmgay.png";
+import bryanImg from "./images/regional/committee/bryan.jpeg";
+import virginiaImg from "./images/regional/committee/virginia.png";
+import neilImg from "./images/regional/committee/neil.png";
 import Navbar from "./Navbar";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -132,17 +139,17 @@ const REGIONAL_COUNCIL = [
 ];
 
 const COMMITTEES = [
-  { name: "Administrative Services",        chair: "Dr. Noel C. Racho",          school: "Miriam College" },
+  { name: "Administrative Services",        chair: "Dr. Noel C. Racho",          school: "Miriam College", image: noelImg },
   { name: "Advocacy",                       chair: "Mr. Edward Dunhill P. Chico", school: "Lourdes School Quezon City" },
   { name: "Basic Education",                chair: "Ms. Evangeline de Peralta",   school: "De La Salle Brothers, Inc. / De La Salle Santiago Zobel School" },
-  { name: "Christian Formation",            chair: "Dr. Erickson S. Javier",      school: "Pasig Catholic College" },
-  { name: "Guidance and Counseling",        chair: "Dr. Myreen P. Cleofe",        school: "University of Santo Tomas" },
+  { name: "Christian Formation",            chair: "Dr. Erickson S. Javier",      school: "Pasig Catholic College", image: pingImg },
+  { name: "Guidance and Counseling",        chair: "Dr. Myreen P. Cleofe",        school: "University of Santo Tomas", image: myreenImg },
   { name: "Library",                        chair: "Rowena Cayanan",              school: "St. Paul University Manila" },
   { name: "Registrar",                      chair: "Vida Marie A. Pacquing",      school: "Assumption Antipolo, Inc." },
-  { name: "Student Affairs",                chair: "Ms. Elmgay Valeriano",        school: "De La Salle University" },
-  { name: "Student Leadership",             chair: "Mr. Bryan M. Gallos",         school: "Holy Child Catholic School" },
-  { name: "Tertiary Education",             chair: "Dr. Virginia R. Fornias",     school: "St. Scholastica's College, Manila" },
-  { name: "Institute For Continuing Education", chair: "Mr. Neil O. Pariñas",    school: "De La Salle – College of St. Benilde" },
+  { name: "Student Affairs",                chair: "Ms. Elmgay Valeriano",        school: "De La Salle University", image: elmgayImg },
+  { name: "Student Leadership",             chair: "Mr. Bryan M. Gallos",         school: "Holy Child Catholic School", image: bryanImg },
+  { name: "Tertiary Education",             chair: "Dr. Virginia R. Fornias",     school: "St. Scholastica's College, Manila", image: virginiaImg },
+  { name: "Institute For Continuing Education", chair: "Mr. Neil O. Pariñas",    school: "De La Salle – College of St. Benilde", image: neilImg },
 ];
 
 const PILLARS = [
@@ -382,8 +389,12 @@ export default function AboutPage({ onBack, onNavigate }) {
             {COMMITTEES.map((c, i) => (
               <div key={c.name} className="committee-card" style={{ animationDelay: `${i * 0.04}s` }}>
                 <div className="committee-card__badge">{c.name}</div>
-                <div className="committee-card__avatar">
-                  {c.chair.split(" ").filter(w => /^[A-Z]/.test(w) && w.length > 1).slice(0, 2).map(w => w[0]).join("")}
+                <div className="committee-card__avatar" style={{ overflow: "hidden", padding: c.image ? 0 : undefined }}>
+                  {c.image ? (
+                    <img src={c.image} alt={c.chair} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 20%" }} />
+                  ) : (
+                    c.chair.split(" ").filter(w => /^[A-Z]/.test(w) && w.length > 1).slice(0, 2).map(w => w[0]).join("")
+                  )}
                 </div>
                 <h3 className="committee-card__name">{c.chair}</h3>
                 <p className="committee-card__label">Committee Chair</p>
