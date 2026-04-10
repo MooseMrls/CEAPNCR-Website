@@ -120,47 +120,83 @@ const PROGRAM_DAYS = [
   {
     day: "Day 1",
     date: "July 29, 2025 (Tuesday)",
-    theme: "Arriving as Pilgrims",
+    theme: "Embracing the Jubilee Call",
+    subTheme: "Renewal & Dialogue",
     color: "#c9a84c",
     sessions: [
-      { time: "8:00 AM",  title: "Registration & Welcome Coffee",       desc: "Arrival of delegates, distribution of materials, networking." },
-      { time: "9:30 AM",  title: "Opening Holy Mass",                   desc: "Celebrated by the CEAP NCR Ecclesiastical Adviser at the UST Chapel." },
-      { time: "11:00 AM", title: "Opening Plenary: Living Synodality",  desc: "Keynote address by the CEAP NCR President on the theme 'Living Synodality as Pilgrims of Hope.'" },
-      { time: "1:00 PM",  title: "Lunch Break & Networking",            desc: "Fellowship meal among school heads and administrators." },
-      { time: "2:30 PM",  title: "Panel: The Synodal Church & Catholic Schools", desc: "Four panelists explore what walking together means for Catholic education in Metro Manila." },
-      { time: "5:00 PM",  title: "Cultural Presentation & Icebreakers", desc: "Showcase of member school talents. Team-building activities." },
-      { time: "7:00 PM",  title: "Welcome Dinner & Fellowship Night",   desc: "Formal dinner. Awarding of long-service member schools." },
+      { time: "7:00 – 8:00 AM",  title: "Registration",                          desc: "" },
+      { time: "8:00 – 9:00 AM",  title: "Eucharistic Celebration",               desc: "Presided by Fr. Glenn William Z. Relucio, Ph.D., Regional Trustee, CEAP NCR." },
+      { time: "9:00 – 9:30 AM",  title: "Health Break (AM)",                     desc: "" },
+      { time: "9:15 – 9:30 AM",  title: "Product Presentation 1",                desc: "Quipper" },
+      { time: "9:30 AM",         title: "Opening Ceremonies",                     desc: "National Anthem & CEAP Hymn · Welcome Remarks (Fr. Louie R. Coronel, O.P., EHL – Secretary General, UST) · Recap of CNGA2024 (Dr. Leo B. Galve) · Perspective Setting (Fr. Kennedy A. Neral, Ph.D.) · Presentation of Participants (Fr. Emilio A. Ascano, LRMS)" },
+      { time: "10:00 AM",        title: "Inspirational Message from the CEAP President", desc: "Fr. Karel S. San Juan, SJ, President, CEAP" },
+      { time: "10:15 AM",        title: "CEAP Executive Director's Report",       desc: "Mr. Narcy Ador Dionisio, CEAP Executive Director" },
+      { time: "10:40 AM",        title: "CEAP NCR Regional Trustee's Report",    desc: "Fr. Glenn William Z. Relucio, Ph.D., Regional Trustee, CEAP NCR" },
+      { time: "11:10 AM – 12:10 PM", title: "Keynote Address — \"Pilgrims of Hope: Embracing the Jubilee Call to Mission\"", desc: "Msgr. Gerardo O. Santos, Ed.D., Parish Priest, St. Andrew Parish, Bel-Air" },
+      { time: "12:10 – 12:30 PM", title: "CEAP NCR Election Process",            desc: "Simultaneous Casting of Votes · Dr. Virginia R. Fornias, Chair, CEAP NCR Tertiary Education Committee" },
+      { time: "12:30 – 1:30 PM", title: "Lunch Break",                           desc: "" },
+      { time: "12:45 – 1:15 PM", title: "Cultural Presentation",                 desc: "UST Salinggawi Dance Troupe" },
+      { time: "1:15 – 1:30 PM",  title: "Product Presentation 2",               desc: "TechnoKids" },
+      { time: "1:30 – 2:30 PM",  title: "Education for a Hope-Filled Future",   desc: "Hon. Juan Edgardo \"Sonny\" M. Angara, Secretary, Department of Education" },
+      { time: "2:30 – 3:15 PM",  title: "Health Break (PM)",                    desc: "" },
+      { time: "2:45 – 3:00 PM",  title: "Product Presentation 3",               desc: "DIWA" },
+      { time: "3:00 – 3:15 PM",  title: "Product Presentation 4",               desc: "RAKSO" },
+      { time: "3:15 – 3:45 PM",  title: "Committee Business Meeting and Election of Officers", desc: "Committee Chairpersons" },
+      { time: "3:45 – 5:00 PM",  title: "Concurrent Sessions",                  desc: "CS1: Tertiary Education — Bridging Faith and Future: Catholic Higher Education in the Next Decade (Fr. Daniel Franklin E. Pilario, CM, Ph.D. – President, Adamson University)\nCS2: Basic Education — Catholic Basic Education Schools as Pillars of Hope (Mr. Paolo Josef L. Blando, National Teachers College)\nCS3: Advocacy — Catholic Schools as Catalysts for Change: Educating for Social Transformation (Ms. Heidi L. Mendoza)\nCS4: Christian Formation — Sacred Pause: Finding Peace in the Ministry of Presence (Ms. May Buenaobra, La Salle Green Hills)\nCS5: Administrative Services — Enhance Collaboration and Synodality Among CEAP-NCR Schools (Mr. Mark Raymond S. Par, CPA, MBA – Miriam College)" },
+      { time: "5:00 PM",         title: "Closing of Day 1",                     desc: "Assigned Committees of the Day" },
     ],
   },
   {
     day: "Day 2",
     date: "July 30, 2025 (Wednesday)",
-    theme: "Walking Together",
+    theme: "Strengthening Our Pilgrimage",
+    subTheme: "Formation & Leadership",
     color: "#1a1f6e",
     sessions: [
-      { time: "7:00 AM",  title: "Morning Prayer & Reflection",         desc: "Led by the CEAP NCR Spirituality Commission." },
-      { time: "8:30 AM",  title: "Plenary II: Inclusive Catholic Education", desc: "Deep dive into RA 11650 and how Catholic schools uphold inclusive practices." },
-      { time: "10:30 AM", title: "Breakout Sessions (4 tracks)",        desc: "Track A: Governance · Track B: Faculty Formation · Track C: Curriculum · Track D: Student Welfare" },
-      { time: "12:00 PM", title: "Lunch",                               desc: "" },
-      { time: "1:30 PM",  title: "Commission Reports",                  desc: "Updates from MaPSA, CHRMD, Spirituality, and Research Commissions." },
-      { time: "3:00 PM",  title: "Workshop: Strategic Planning 2026",   desc: "Facilitated group workshops for member school action planning." },
-      { time: "5:30 PM",  title: "Eucharistic Celebration",             desc: "Evening Mass for all delegates." },
-      { time: "7:00 PM",  title: "Delegates' Night",                    desc: "Cultural performances and raffle for participating member schools." },
+      { time: "7:00 – 8:00 AM",  title: "Registration",                          desc: "" },
+      { time: "8:00 – 9:00 AM",  title: "Eucharistic Celebration",               desc: "His Eminence Jose F. Cardinal Advincula, D.D., Archbishop of Manila" },
+      { time: "9:00 – 9:45 AM",  title: "Health Break (AM)",                     desc: "" },
+      { time: "9:15 – 9:30 AM",  title: "Product Presentation 5",               desc: "KCK" },
+      { time: "9:30 – 9:45 AM",  title: "Product Presentation 6",               desc: "Phoenix Publishing House" },
+      { time: "9:45 – 10:00 AM", title: "Energizer",                             desc: "% Guidance Committee" },
+      { time: "10:00 – 10:15 AM", title: "Recap of Day 1",                       desc: "Mr. Neil O. Parinas, Chairperson, CEAP NCR Institute for Continuing Education" },
+      { time: "10:15 – 11:30 AM", title: "Plenary Session 1 — \"Leadership with Integrity: Servant Leadership in the Journey of Nation-Building\"", desc: "Dr. Narciso \"Jun\" Erguiza, Jr., President, St. John Integrated School, Angeles City" },
+      { time: "11:30 AM – 12:00 NN", title: "Open Forum",                        desc: "" },
+      { time: "12:00 – 1:00 PM", title: "Lunch Break",                           desc: "" },
+      { time: "12:15 – 12:45 PM", title: "Cultural Presentation",                desc: "Adamson University Dance Company" },
+      { time: "1:00 – 2:00 PM",  title: "Plenary Session 2 — Usapang ED with Atty E and Doc D sa CEAP NCR", desc: "Atty. Joseph Noel M. Estrada (Sr. Managing Partner, Estrada and Aquino Law Office) · Dr. Rhodora Angela F. Ferrer (Executive Director, PEAC) · Ms. Evangeline de Peralta (Learner Formation Head, De La Salle Santiago Zobel) · Ms. Remilyn Caluma-de Jesus (Senior High School Teacher, San Beda University) · Mrs. Jennifer Tiu (Parents Coordinating Body President, Holy Child Catholic School) · Mr. Juan Miguel Rubiales (Grade 11 Student, Colegio San Agustin – Makati)" },
+      { time: "2:00 – 2:30 PM",  title: "Open Forum",                            desc: "" },
+      { time: "2:30 – 3:15 PM",  title: "Health Break (PM)",                    desc: "" },
+      { time: "2:45 – 3:00 PM",  title: "Product Presentation 7",               desc: "Phoenix Publishing House" },
+      { time: "3:00 – 3:15 PM",  title: "Product Presentation 8",               desc: "SCUOLA" },
+      { time: "3:15 – 3:45 PM",  title: "Committee Business Meeting and Election of Officers", desc: "Committee Chairpersons" },
+      { time: "3:45 – 5:00 PM",  title: "Concurrent Sessions",                  desc: "CS6: Student Affairs — Beyond Discipline: Empowering Student Affairs to Address Bullying and Nurture Inclusive Communities (Dr. Sheila Marie \"Shake\" Hocson, Director of Guidance Services, Far Eastern University)\nCS7: Student Leadership — Called to Lead in Hope: Shaping #KatolikongLider as Pilgrims on a Mission with Christ (Ms. Cherry Camille Depano, RN, Corporate Secretary, YMCA of Manila)\nCS8: Library Services — Cultivating a Reading Culture for Wisdom and Faith: The Bible (Fr. Francis Alvarez, SJ, Ateneo de Manila University)\nCS9: Guidance & Counselling — Walking with the Young: Mental Health and Spiritual Resilience in Schools (Mr. Von Karlo N. Gonzales, RGC, De La Salle University Laguna Campus)\nCS10: Registrar — From Interaction to Impact: Redefining Frontline Customer Service (Ms. Bianca Monica \"Nix\" L. Lañas, CEO/Founder, Propeller Realty)" },
+      { time: "5:00 PM",         title: "Closing of Day 2",                     desc: "Assigned Committees of the Day" },
     ],
   },
   {
     day: "Day 3",
     date: "July 31, 2025 (Thursday)",
-    theme: "Renewed & Sent Forth",
+    theme: "Commissioning & Sending Forth",
+    subTheme: "Action & Commitment",
     color: "#232899",
     sessions: [
-      { time: "7:00 AM",  title: "Lauds & Morning Reflection",          desc: "Morning prayer in the tradition of the Liturgy of the Hours." },
-      { time: "8:30 AM",  title: "Plenary III: Pilgrims of Hope — The Way Forward", desc: "Closing keynote on the vision of CEAP NCR for 2026 and beyond." },
-      { time: "10:00 AM", title: "Open Forum & Resolutions",            desc: "Delegates raise concerns and vote on resolutions for the upcoming year." },
-      { time: "11:30 AM", title: "Assembly Declaration",                desc: "Reading and signing of the CEAP NCR General Assembly 2025 Declaration." },
-      { time: "12:00 PM", title: "Closing Lunch",                       desc: "Final fellowship lunch." },
-      { time: "2:00 PM",  title: "Closing Mass & Blessing",             desc: "Solemn closing Eucharistic celebration and sending-forth blessing." },
-      { time: "4:00 PM",  title: "Departure",                           desc: "Safe travels for all delegates." },
+      { time: "7:00 – 8:00 AM",  title: "Registration",                          desc: "" },
+      { time: "8:00 – 8:05 AM",  title: "Opening Prayer",                        desc: "AVP" },
+      { time: "8:05 – 8:15 AM",  title: "Energizer",                             desc: "% Guidance Committee" },
+      { time: "8:15 – 8:30 AM",  title: "Recap of Day 2",                        desc: "Mr. Neil O. Pariñas, Chair, Institute for Continuing Education (ICE)" },
+      { time: "8:30 – 9:30 AM",  title: "Plenary Session 3 — \"Synodality in Catholic Education: Walking Together in Mission and Ministry\"", desc: "Fr. Raymond Joseph L. Arre, Superintendent, Diocese of Cubao Educational System (DOCES) · Chair, CEAP Superintendents Conference · Vice President, MaPSA" },
+      { time: "9:30 – 10:00 AM", title: "Health Break (AM)",                     desc: "" },
+      { time: "10:00 – 11:30 AM", title: "Plenary Session 4 — \"The Future of Catholic Schools: Challenges and Opportunities in the Jubilee Year and Beyond\"", desc: "Mr. Francis Jim B. Tuscano, EdTech Coordinator, Xavier School" },
+      { time: "11:30 AM",        title: "Product Presentation 9",               desc: "OrangeApps" },
+      { time: "11:45 AM",        title: "Lunch Break",                           desc: "" },
+      { time: "12:00 NN",        title: "Cultural Presentation",                 desc: "Kalye A: The Musical (Excerpt)" },
+      { time: "1:00 – 2:30 PM",  title: "A.I. Concurrent Sessions",             desc: "CS11: AI for Inclusive Education: Bridging Gaps for Diverse Learners (sponsored by SCOULA) — Fr. Stephen R. Redillas, OP, PhD, University of Santo Tomas\nCS12: Ethical AI Integration in Education: Balancing Innovation with Integrity (sponsored by Phoenix Publishing House) — Dr. Reuben P. Velarde, Asst. Vice President for Business Development, Phoenix Group of Companies\nCS13: AI in School Administration: Streamlining Operations and Decision-Making (sponsored by DIWA Learning Systems) — Dr. Jerrylyn Bacroya-Magbuo, Dean of the College of Arts, Sciences, and Education, FAITH Colleges" },
+      { time: "3:00 PM",         title: "Go back to Plenary Hall · Health Break (PM)", desc: "" },
+      { time: "3:30 – 4:30 PM",  title: "Eucharistic Celebration",               desc: "His Excellency Most Rev. Rufino C. Sescon, Jr. DD, Bishop of Balanga" },
+      { time: "3:30 – 4:30 PM",  title: "Commissioning of the Newly Elected CEAP NCR Trustees", desc: "" },
+      { time: "3:30 – 4:30 PM",  title: "Presentation of Resolutions",           desc: "" },
+      { time: "4:30 – 5:00 PM",  title: "Closing Remarks & Acknowledgement · Grand Raffle", desc: "Fr. Glenn William Z. Relucio, Ph.D." },
     ],
   },
 ];
@@ -187,12 +223,11 @@ const SPEAKERS = [
 ];
 
 const HIGHLIGHTS = [
-  { label: "Opening Mass",             desc: "Celebrated at the UST Central Seminary Chapel, uniting all delegates in prayer." },
-  { label: "Synodality Keynote",       desc: "A landmark address on walking together as a Church committed to education." },
-  { label: "Commission Reports",       desc: "MaPSA, CHRMD, and Spirituality Commissions presented 2025 milestones." },
-  { label: "Assembly Declaration",     desc: "A signed declaration committing member schools to the 2026 action agenda." },
-  { label: "Delegates' Night",         desc: "Cultural performances, raffle prizes, and long-service school recognition." },
-  { label: "3-Day Highlights Video",   desc: "Full recap video now available on the CEAP NCR Facebook page." },
+  { label: "Deepen Spiritual Renewal",          desc: "Reflect on the meaning of the Jubilee Year and its impact on Catholic education, fostering a culture of faith, gratitude, and reconciliation." },
+  { label: "Strengthen Missionary Commitment",  desc: "Equip Catholic schools to become vibrant centers of evangelization, social transformation, and lifelong learning in alignment with the Church's vision for the Jubilee." },
+  { label: "Enhance Collaboration & Synodality", desc: "Encourage dialogue and synergy among Catholic educational institutions, government agencies, and stakeholders to advance holistic and inclusive education." },
+  { label: "Empower Leadership & Formation",    desc: "Provide transformative leadership training, student engagement strategies, and faith formation programs to shape Christ-centered educators and learners." },
+  { label: "Innovate for the Future",           desc: "Explore innovative approaches in academic leadership, student services, and digital transformation to ensure Catholic education remains relevant and impactful in the modern world." },
 ];
 
 
@@ -419,7 +454,7 @@ export default function GeneralAssemblyPage({ onBack, onNavigate, activeNav }) {
       {/* ── KEY HIGHLIGHTS ─────────────────────── */}
       <section className="ga-section ga-section--alt">
         <div className="ga-section-inner">
-          <p className="section-label section-label--light ga-reveal">Assembly Moments</p>
+          <p className="section-label section-label--light ga-reveal">Objectives of the Assembly</p>
           <h2 className="section-title section-title--light ga-reveal">Key Highlights</h2>
           <div className="ga-highlights-list">
             {HIGHLIGHTS.map(({ label, desc }) => (
@@ -441,8 +476,7 @@ export default function GeneralAssemblyPage({ onBack, onNavigate, activeNav }) {
           <p className="section-label ga-reveal">3-Day Schedule</p>
           <h2 className="section-title ga-reveal">Assembly Program</h2>
           <p className="section-body ga-reveal" style={{ marginBottom: "2.5rem" }}>
-            A full program spanning three days — from the opening Mass to the closing declaration
-            and sending-forth blessing.
+            A full three-day program — from the opening Mass and keynote addresses to concurrent sessions, plenary discussions, and the commissioning and sending-forth of newly elected trustees.
           </p>
 
           {/* Day Tabs */}
@@ -456,6 +490,7 @@ export default function GeneralAssemblyPage({ onBack, onNavigate, activeNav }) {
               >
                 <span className="ga-day-tab-day">{d.day}</span>
                 <span className="ga-day-tab-theme">{d.theme}</span>
+                {d.subTheme && <span className="ga-day-tab-subtheme">{d.subTheme}</span>}
               </button>
             ))}
           </div>
@@ -464,12 +499,19 @@ export default function GeneralAssemblyPage({ onBack, onNavigate, activeNav }) {
           <div className="ga-program-panel">
             <div className="ga-program-header">
               <h3>{PROGRAM_DAYS[activeDay].date}</h3>
-              <span
-                className="ga-program-theme-badge"
-                style={{ background: PROGRAM_DAYS[activeDay].color }}
-              >
-                {PROGRAM_DAYS[activeDay].theme}
-              </span>
+              <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "0.25rem" }}>
+                <span
+                  className="ga-program-theme-badge"
+                  style={{ background: PROGRAM_DAYS[activeDay].color }}
+                >
+                  {PROGRAM_DAYS[activeDay].theme}
+                </span>
+                {PROGRAM_DAYS[activeDay].subTheme && (
+                  <span style={{ fontSize: "0.75rem", color: "#888", fontStyle: "italic" }}>
+                    {PROGRAM_DAYS[activeDay].subTheme}
+                  </span>
+                )}
+              </div>
             </div>
             <div className="ga-program-sessions">
               {PROGRAM_DAYS[activeDay].sessions.map((s, i) => (

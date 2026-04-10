@@ -514,6 +514,14 @@
 
 .ga-day-tab--active .ga-day-tab-theme { color: white; }
 
+.ga-day-tab-subtheme {
+  font-size: 0.72rem;
+  font-style: italic;
+  color: var(--text-muted);
+  margin-top: 1px;
+}
+.ga-day-tab--active .ga-day-tab-subtheme { color: rgba(255,255,255,0.75); }
+
 .ga-program-panel {
   background: white;
   border-radius: var(--radius-lg);

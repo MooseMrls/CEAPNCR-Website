@@ -13,6 +13,10 @@ import ga9 from "./images/ga9.jpg";
 import ga10 from "./images/ga10.jpg";
 import ga11 from "./images/ga11.jpg";
 import ga12 from "./images/ga12.jpg";
+import edsa from "./images/edsa.jpg";
+import shs from "./images/shs.jpg";
+import guidance from "./images/guidance.jpg";
+import cyber from "./images/cyber.jpg";
 import Navbar from "./Navbar";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -150,12 +154,12 @@ const GA_PHOTOS = [
 
 // ── Other 2025 event photos ──
 const EVENT_PHOTOS = {
-  peoplePower:    "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=800&h=480&q=80",
+  peoplePower:    edsa,
   seminarWorkshop:"https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=800&h=480&q=80",
   gaHighlights:   ga9,
-  nationalConv:   "https://images.unsplash.com/photo-1532619675605-1ede6c2ed2b0?auto=format&fit=crop&w=800&h=480&q=80",
-  paascu:         "https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?auto=format&fit=crop&w=800&h=480&q=80",
-  formation:      "https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=800&h=480&q=80",
+  nationalConv:   shs,
+  paascu:         guidance,
+  formation:      cyber,
 };
 
 /* ─────────────────────────────────────────
@@ -221,38 +225,38 @@ const ALL_EVENTS = [
   // },
   {
     id: "natconv2025",
-    date: "September 30 – October 3, 2025",
-    title: "CEAP National Convention 2025",
-    year: "2025",
+    date: "January 29",
+    title: "Strengthened Senior High School Benchmarking Program",
+    year: "2026",
     img: EVENT_PHOTOS.nationalConv,
-    location: "SMX Convention Center, Pasay City",
-    time: "4-Day Event",
-    desc: "The national gathering of Catholic educational institutions across the Philippines at SMX Convention Center Manila, themed 'Living Synodality as Pilgrims of Hope.'",
-    fullDesc: "The 2025 CEAP National Convention gathered over 3,500 delegates from all regions of the Philippines at the SMX Convention Center, Mall of Asia. The event featured a keynote address by His Eminence Cardinal Luis Antonio G. Tagle, who was also awarded the prestigious Pro Deo et Patria Award. CEAP NCR member schools participated actively in this national celebration of Catholic education.",
+    location: "Cainta Catholic College, Cainta Rizal",
+    time: "8:00 am - 5:00 pm",
+    desc: "In collaboration with Quipper Philippines, CEAP NCR invites member schools to join the Strengthened Senior High School Benchmarking Program, hosted by Cainta Catholic College.",
+    fullDesc: "In collaboration with Quipper Philippines, CEAP NCR invites member schools to join the Strengthened Senior High School Benchmarking Program, hosted by Cainta Catholic College.",
     fbPostUrl: "https://www.facebook.com/ceapncrPH/",
   },
   {
     id: "paascu2025",
-    date: "Ongoing 2025",
-    title: "PAASCU Accreditation Preparation Clinic",
+    date: "June 26 -27 2025",
+    title: "Guidance and Counseling Committee 2nd General Assembly.",
     year: "2025",
     img: EVENT_PHOTOS.paascu,
-    location: "Catholic Educational Center, Intramuros, Manila",
+    location: "Albacina Hall, Lourdes School of Mandaluyong ",
     time: "9:00 AM – 3:00 PM",
-    desc: "Intensive guidance sessions for schools undergoing first-time or renewal PAASCU accreditation — covering documentation, site visit readiness, and compliance.",
-    fullDesc: "CEAP NCR hosts ongoing clinics throughout 2025 to help member schools prepare confidently for PAASCU accreditation visits. Expert facilitators walk teams through self-survey instruments, documentation standards, and common compliance gaps. Schools at both basic and tertiary levels are encouraged to attend and bring their accreditation teams.",
+    desc: "The Guidance and Counseling Committee of CEAP NCR held its 2nd General Assembly on June 26-27, 2025, at Albacina Hall, Lourdes School of Mandaluyong. The event gathered guidance counselors and student formation teams from member schools for a series of workshops and discussions focused on enhancing guidance services within the Catholic education network.",
+    fullDesc: "The Guidance and Counseling Committee of CEAP NCR held its 2nd General Assembly on June 26-27, 2025, at Albacina Hall, Lourdes School of Mandaluyong. The event gathered guidance counselors and student formation teams from member schools for a series of workshops and discussions focused on enhancing guidance services within the Catholic education network.",
     fbPostUrl: "https://www.facebook.com/ceapncrPH/",
   },
   {
     id: "formation2025",
-    date: "Ongoing 2025",
-    title: "Faculty Development & Values Formation Program",
+    date: "June 11, 2025",
+    title: "Cybersecurity and Data Privacy",
     year: "2025",
     img: EVENT_PHOTOS.formation,
-    location: "Various CEAP NCR Member Institutions",
-    time: "Multiple Sessions",
-    desc: "Year-round professional growth program for Catholic school educators, integrating pedagogy, spirituality, and leadership within the NCR member school network.",
-    fullDesc: "CEAP NCR's flagship Faculty Development Program runs year-round across member institutions, offering formation workshops, spiritual retreats, and leadership clinics. The 2025 program is anchored on the synodal spirit of walking together as pilgrims of hope, encouraging Catholic educators to deepen their vocation and professionally grow within a faith-based framework.",
+    location: "ESI Conference Room, Miriam College, Quezon City",
+    time: "8:00 AM - 5:00 PM",
+    desc: "The Commission on Formation and Values Education of CEAP NCR conducted a seminar-workshop on Cybersecurity and Data Privacy on June 11, 2025, at the ESI Conference Room, Miriam College, Quezon City. The session equipped school administrators, IT personnel, and formation teams with essential knowledge and strategies to safeguard digital assets and ensure compliance with data privacy regulations in the educational setting.",
+    fullDesc: "The Commission on Formation and Values Education of CEAP NCR conducted a seminar-workshop on Cybersecurity and Data Privacy on June 11, 2025, at the ESI Conference Room, Miriam College, Quezon City. The session equipped school administrators, IT personnel, and formation teams with essential knowledge and strategies to safeguard digital assets and ensure compliance with data privacy regulations in the educational setting.",
     fbPostUrl: "https://www.facebook.com/ceapncrPH/",
   },
 ];
