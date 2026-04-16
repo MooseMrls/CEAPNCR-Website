@@ -522,6 +522,7 @@ export default function App() {
   const [showGAPage, setShowGAPage]           = useState(false);
   const [showMSPage, setShowMSPage]           = useState(false);
   const [showAboutPage, setShowAboutPage]     = useState(false);
+  const [gaYear, setGaYear]                   = useState(2026);
 
   const isHomePage = !showEventsPage && !showGAPage && !showMSPage && !showAboutPage;
   useScrollAnimations(isHomePage);
@@ -635,7 +636,7 @@ export default function App() {
     setShowEventsPage(true);
   };
 
-  const handleGlobalNavigate = (link) => {
+  const handleGlobalNavigate = (link, year = 2026) => {
     const isEvents = link === "Events";
     const isGA = link === "General Assembly";
     const isMS = link === "Member Schools";
@@ -648,6 +649,9 @@ export default function App() {
     setShowAboutPage(isAbout);
 
     setActiveNav(link);
+    if (isGA) {
+      setGaYear(year);
+    }
 
     // 2. If it's a home page section, scroll to it
     if (!isEvents && !isGA && !isMS && !isAbout) {
@@ -693,6 +697,7 @@ export default function App() {
         onBack={() => handleGlobalNavigate("Home")}
         activeNav="General Assembly"
         onNavigate={handleGlobalNavigate}
+        year={gaYear}
       />
     );
   }

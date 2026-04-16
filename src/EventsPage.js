@@ -24,7 +24,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 /* ─────────────────────────────────────────
-   SVG ICONS (same set as App.js)
+   SVG ICONS
 ───────────────────────────────────────── */
 const Icon = {
   ArrowLeft: () => (

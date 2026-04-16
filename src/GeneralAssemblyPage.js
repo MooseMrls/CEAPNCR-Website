@@ -257,12 +257,67 @@ function Lightbox({ images, activeIndex, onClose, onPrev, onNext }) {
   );
 }
 
+const YEAR_DATA = {
+  2026: {
+    heroBadge: "Upcoming: General Assembly 2026",
+    isUpcoming: true,
+    theme: "\"Transforming Catholic Schools into New Maps of Hope\"",
+    desc: "Join us for the upcoming CEAP NCR General Assembly in 2026 at the University of Santo Tomas as we explore ways to transform Catholic schools into new maps of hope.",
+    dateStartEnd: "July 29–31, 2026",
+    location: "Buenaventura Garcia Paredes, O.P. Building (Thomasian Alumni Center), UST",
+    delegates: "Registration Upcoming",
+    aboutDesc1: "The upcoming CEAP NCR General Assembly 2026 will be held at the Buenaventura Garcia Paredes, O.P. Building (Thomasian Alumni Center), University of Santo Tomas in Sampaloc, Manila.",
+    aboutDesc2: "Anchored on the theme \"Transforming Catholic Schools into New Maps of Hope,\" the assembly looks forward to bringing together school heads, administrators, and Catholic educators across the National Capital Region.",
+    overviewImg: ga12,
+    highlights: [
+      { label: "Transforming Catholic Schools", desc: "Exploring strategies to serve as new maps of hope for learners." },
+      { label: "Community Renewal", desc: "Strengthening the bonds of Catholic educational institutions in NCR." }
+    ],
+    programDays: [
+      {
+        day: "Day 1",
+        date: "July 29, 2026 (Wednesday)",
+        theme: "New Maps of Hope",
+        color: "#c9a84c",
+        sessions: [
+          { time: "TBA", title: "Registration & Opening Ceremonies", desc: "Buenaventura Garcia Paredes, O.P. Building" }
+        ]
+      }
+    ],
+    speakers: [],
+    videoTitle: "General Assembly 2026",
+    videoDate: "Upcoming",
+    gallery: GALLERY_IMAGES.slice(6, 10),
+    galleryDesc: "Glimpses of past assemblies to build excitement for 2026!"
+  },
+  2025: {
+    heroBadge: "General Assembly 2025",
+    theme: "\"Living Synodality as Pilgrims of Hope\"",
+    desc: "The flagship three-day gathering of CEAP NCR member schools at the University of Santo Tomas — uniting Catholic educators, administrators, and school leaders from across Metro Manila.",
+    dateStartEnd: "July 29–31, 2025",
+    location: "University of Santo Tomas, Manila",
+    delegates: "120+ Delegates",
+    aboutDesc1: "The CEAP NCR General Assembly 2025 was a landmark three-day event held at the University of Santo Tomas, bringing together school heads, administrators, and Catholic educators from across the National Capital Region.",
+    aboutDesc2: "Anchored on the theme \"Living Synodality as Pilgrims of Hope,\" the assembly featured plenary sessions, breakout discussions, commission reports, and a closing declaration renewing the commitment of member schools to Catholic education in Metro Manila.",
+    overviewImg: ga12,
+    highlights: HIGHLIGHTS,
+    programDays: PROGRAM_DAYS,
+    speakers: SPEAKERS,
+    videoTitle: "3-Day Highlights — CEAP NCR General Assembly 2025",
+    videoDate: "August 2025",
+    gallery: GALLERY_IMAGES,
+    galleryDesc: "A visual chronicle of the CEAP NCR General Assembly 2025 — three days of synodality, community, and hope at the University of Santo Tomas."
+  }
+};
+
 /* ─── MAIN COMPONENT ─────────────────────── */
-export default function GeneralAssemblyPage({ onBack, onNavigate, activeNav }) {
+export default function GeneralAssemblyPage({ onBack, onNavigate, activeNav, year = 2025 }) {
   const [scrolled, setScrolled]         = useState(false);
   const [activeDay, setActiveDay]       = useState(0);
   const [lightboxIdx, setLightboxIdx]   = useState(null);
   const [newsletterEmail, setNewsletterEmail] = useState("");
+  
+  const currentData = YEAR_DATA[year] || YEAR_DATA[2025];
   const [newsletterDone, setNewsletterDone]   = useState(false);
   const initialized = useRef(false);
 
@@ -373,22 +428,20 @@ export default function GeneralAssemblyPage({ onBack, onNavigate, activeNav }) {
           </button> */}
 
           <div className="ga-hero-content">
-            <span className="ga-hero-badge">General Assembly 2025</span>
+            <span className="ga-hero-badge">{currentData.heroBadge}</span>
             <h1 className="ga-hero-title">
               CEAP NCR<br /><em>General Assembly</em>
             </h1>
             <p className="ga-hero-theme">
-              "Living Synodality as Pilgrims of Hope"
+              {currentData.theme}
             </p>
             <p className="ga-hero-desc">
-              The flagship three-day gathering of CEAP NCR member schools at the University of
-              Santo Tomas — uniting Catholic educators, administrators, and school leaders from
-              across Metro Manila.
+              {currentData.desc}
             </p>
             <div className="ga-hero-meta">
-              <span><Icon.Calendar /> July 29–31, 2025</span>
-              <span><Icon.MapPin /> University of Santo Tomas, Manila</span>
-              <span><Icon.Users /> 120+ Delegates</span>
+              <span><Icon.Calendar /> {currentData.dateStartEnd}</span>
+              <span><Icon.MapPin /> {currentData.location}</span>
+              <span><Icon.Users /> {currentData.delegates}</span>
             </div>
             {/* <div className="ga-hero-ctas">
               <a
@@ -416,36 +469,34 @@ export default function GeneralAssemblyPage({ onBack, onNavigate, activeNav }) {
         </div>
       </div> */}
 
-      {/* ── ABOUT / OVERVIEW ─────────────────── */}
-      <section className="ga-section">
-        <div className="ga-section-inner">
+      {/* ── SECTIONS (Not rendered if upcoming) ─ */}
+      {!currentData.isUpcoming && (
+        <>
+          {/* ── ABOUT / OVERVIEW ─────────────────── */}
+          <section className="ga-section">
+            <div className="ga-section-inner">
           <div className="ga-overview-grid">
             <div>
               <p className="section-label">About the Assembly</p>
               <h2 className="section-title ga-reveal">A Landmark Gathering for Catholic Education</h2>
               <p className="section-body ga-reveal">
-                The CEAP NCR General Assembly 2025 was a landmark three-day event held at the
-                University of Santo Tomas, bringing together school heads, administrators, and
-                Catholic educators from across the National Capital Region.
+                {currentData.aboutDesc1}
               </p>
               <p className="section-body ga-reveal" style={{ marginTop: "1rem" }}>
-                Anchored on the theme <strong>"Living Synodality as Pilgrims of Hope,"</strong> the
-                assembly featured plenary sessions, breakout discussions, commission reports, and a
-                closing declaration renewing the commitment of member schools to Catholic education
-                in Metro Manila.
+                {currentData.aboutDesc2}
               </p>
             </div>
             <div className="ga-overview-img ga-reveal">
-              <img
-                src={ga12}
-                alt="General Assembly overview"
-                loading="lazy"
-                decoding="async"
-              />
-              <div className="ga-overview-img-badge">
-                <Icon.Star />
-                <span>UST, Espana Manila</span>
-              </div>
+                  <img
+                    src={currentData.overviewImg}
+                    alt="General Assembly overview"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <div className="ga-overview-img-badge">
+                    <Icon.Star />
+                    <span>{currentData.location.split(',')[0]}</span>
+                  </div>
             </div>
           </div>
         </div>
@@ -457,7 +508,7 @@ export default function GeneralAssemblyPage({ onBack, onNavigate, activeNav }) {
           <p className="section-label section-label--light ga-reveal">Objectives of the Assembly</p>
           <h2 className="section-title section-title--light ga-reveal">Key Highlights</h2>
           <div className="ga-highlights-list">
-            {HIGHLIGHTS.map(({ label, desc }) => (
+            {currentData.highlights.map(({ label, desc }) => (
               <div className="ga-highlight-item" key={label}>
                 <div className="ga-highlight-dot" />
                 <div>
@@ -481,7 +532,7 @@ export default function GeneralAssemblyPage({ onBack, onNavigate, activeNav }) {
 
           {/* Day Tabs */}
           <div className="ga-day-tabs">
-            {PROGRAM_DAYS.map((d, i) => (
+            {currentData.programDays.map((d, i) => (
               <button
                 key={d.day}
                 className={`ga-day-tab ${activeDay === i ? "ga-day-tab--active" : ""}`}
@@ -496,25 +547,26 @@ export default function GeneralAssemblyPage({ onBack, onNavigate, activeNav }) {
           </div>
 
           {/* Sessions */}
+          {currentData.programDays[activeDay] && (
           <div className="ga-program-panel">
             <div className="ga-program-header">
-              <h3>{PROGRAM_DAYS[activeDay].date}</h3>
+              <h3>{currentData.programDays[activeDay].date}</h3>
               <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "0.25rem" }}>
                 <span
                   className="ga-program-theme-badge"
-                  style={{ background: PROGRAM_DAYS[activeDay].color }}
+                  style={{ background: currentData.programDays[activeDay].color }}
                 >
-                  {PROGRAM_DAYS[activeDay].theme}
+                  {currentData.programDays[activeDay].theme}
                 </span>
-                {PROGRAM_DAYS[activeDay].subTheme && (
+                {currentData.programDays[activeDay].subTheme && (
                   <span style={{ fontSize: "0.75rem", color: "#888", fontStyle: "italic" }}>
-                    {PROGRAM_DAYS[activeDay].subTheme}
+                    {currentData.programDays[activeDay].subTheme}
                   </span>
                 )}
               </div>
             </div>
             <div className="ga-program-sessions">
-              {PROGRAM_DAYS[activeDay].sessions.map((s, i) => (
+              {currentData.programDays[activeDay].sessions.map((s, i) => (
                 <div className="ga-program-session" key={i}>
                   <div className="ga-session-time">
                     <Icon.Clock />
@@ -528,6 +580,7 @@ export default function GeneralAssemblyPage({ onBack, onNavigate, activeNav }) {
               ))}
             </div>
           </div>
+          )}
         </div>
       </section>
 
@@ -537,22 +590,28 @@ export default function GeneralAssemblyPage({ onBack, onNavigate, activeNav }) {
           <p className="section-label section-label--light ga-reveal">Resource Persons</p>
           <h2 className="section-title section-title--light ga-reveal">Speakers &amp; Panelists</h2>
           <div className="ga-speakers-grid">
-            {SPEAKERS.map((s) => (
-              <div className="ga-speaker-card" key={s.name}>
-                <div className="ga-speaker-img-wrap">
-                  <img
-                    src={s.img}
-                    alt={s.name}
-                    loading="lazy"
-                    decoding="async"
-                  />
+            {currentData.speakers && currentData.speakers.length > 0 ? (
+              currentData.speakers.map((s) => (
+                <div className="ga-speaker-card" key={s.name}>
+                  <div className="ga-speaker-img-wrap">
+                    <img
+                      src={s.img}
+                      alt={s.name}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+                  <div className="ga-speaker-info">
+                    <h4>{s.name}</h4>
+                    <p>{s.role}</p>
+                  </div>
                 </div>
-                <div className="ga-speaker-info">
-                  <h4>{s.name}</h4>
-                  <p>{s.role}</p>
-                </div>
-              </div>
-            ))}
+              ))
+            ) : (
+              <p style={{ gridColumn: "1 / -1", textAlign: "center", fontStyle: "italic", color: "var(--navy-light)" }}>
+                Speakers list will be updated soon.
+              </p>
+            )}
           </div>
         </div>
       </section>
@@ -561,65 +620,57 @@ export default function GeneralAssemblyPage({ onBack, onNavigate, activeNav }) {
       <section className="ga-section">
         <div className="ga-section-inner">
           <p className="section-label ga-reveal">Official Recap</p>
-          <h2 className="section-title ga-reveal">3-Day Highlights Video</h2>
+          <h2 className="section-title ga-reveal">
+            {currentData.isUpcoming ? "Highlights & Teasers" : "3-Day Highlights Video"}
+          </h2>
           <p className="section-body ga-reveal">
-            Watch the official three-day highlights video of the CEAP NCR General Assembly 2025,
-            capturing the energy, talks, and fellowship of the entire event at UST. Available now
-            on the CEAP NCR Facebook page.
+            {currentData.isUpcoming 
+              ? "We are preparing exciting coverages for the 2026 General Assembly. Stay tuned for teasers and updates!"
+              : "Watch the official three-day highlights video of the CEAP NCR General Assembly, capturing the energy, talks, and fellowship of the entire event. Available now on the CEAP NCR Facebook page."}
           </p>
 
           <div className="ga-video-grid">
-            {/* Main video */}
-            <div className="ga-video-main ga-reveal">
-              <div className="ga-video-thumb">
-                <img
-                  src={ga2}
-                  alt="GA 2025 Highlights Video"
-                  loading="lazy"
-                  decoding="async"
-                />
-                <div className="ga-video-overlay">
-                  <div className="ga-play-btn">
-                    <Icon.Play />
-                  </div>
-                  <div className="ga-video-info">
-                    <h3>3-Day Highlights — CEAP NCR General Assembly 2025</h3>
-                    <p>Watch on Facebook · July 31, 2025</p>
+                {/* Main video */}
+                <div className="ga-video-main ga-reveal">
+                  <div className="ga-video-thumb">
+                    <img
+                      src={currentData.overviewImg}
+                      alt="Highlights Video"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <div className="ga-video-overlay">
+                      <div className="ga-play-btn">
+                        <Icon.Play />
+                      </div>
+                      <div className="ga-video-info">
+                        <h3>{currentData.videoTitle}</h3>
+                        <p>{currentData.videoDate}</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-              {/* <a
-                href="https://www.facebook.com/ceapncr"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="ga-video-link"
-              >
-                <Icon.Facebook />
-                Watch Full Video on CEAP NCR Facebook Page
-                <Icon.ExternalLink />
-              </a> */}
-            </div>
 
-            {/* Secondary clips */}
-            <div className="ga-video-side">
-              {[
-                { title: "Opening Plenary Recap",      img: ga3, dur: "12:34" },
-                { title: "Delegates' Night Highlights", img: ga4, dur: "8:15" },
-                { title: "Closing Mass & Declaration",  img: ga5, dur: "15:02" },
-              ].map((v) => (
-                <div className="ga-video-clip ga-reveal" key={v.title}>
-                  <div className="ga-video-clip-thumb">
-                    <img src={v.img} alt={v.title} loading="lazy" decoding="async" />
-                    <div className="ga-video-clip-play"><Icon.Play /></div>
-                    <span className="ga-video-clip-dur">{v.dur}</span>
-                  </div>
-                  <div className="ga-video-clip-info">
-                    <h4>{v.title}</h4>
-                    <p><Icon.Facebook /> CEAP NCR Facebook</p>
-                  </div>
+                {/* Secondary clips */}
+                <div className="ga-video-side">
+                  {[
+                    { title: "Opening Plenary Recap",      img: ga3, dur: "12:34" },
+                    { title: "Delegates' Night Highlights", img: ga4, dur: "8:15" },
+                    { title: "Closing Mass & Declaration",  img: ga5, dur: "15:02" },
+                  ].map((v) => (
+                    <div className="ga-video-clip ga-reveal" key={v.title}>
+                      <div className="ga-video-clip-thumb">
+                        <img src={v.img} alt={v.title} loading="lazy" decoding="async" />
+                        <div className="ga-video-clip-play"><Icon.Play /></div>
+                        <span className="ga-video-clip-dur">{v.dur}</span>
+                      </div>
+                      <div className="ga-video-clip-info">
+                        <h4>{v.title}</h4>
+                        <p><Icon.Facebook /> CEAP NCR Facebook</p>
+                      </div>
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
           </div>
         </div>
       </section>
@@ -630,37 +681,34 @@ export default function GeneralAssemblyPage({ onBack, onNavigate, activeNav }) {
           <p className="section-label ga-reveal">Photo Documentation</p>
           <h2 className="section-title ga-reveal">Assembly Gallery</h2>
           <p className="section-body ga-reveal" style={{ marginBottom: "2.5rem" }}>
-            A visual chronicle of the CEAP NCR General Assembly 2025 — three days of synodality,
-            community, and hope at the University of Santo Tomas.
+            {currentData.galleryDesc}
           </p>
 
           <div className="ga-gallery-grid">
-            {GALLERY_IMAGES.map((img, i) => (
-              <button
-                className={`ga-gallery-item ${i === 0 ? "ga-gallery-item--wide" : ""}`}
-                key={img.id}
-                onClick={() => setLightboxIdx(i)}
-                aria-label={`View photo: ${img.caption}`}
-              >
-                <img
-                  src={img.src}
-                  alt={img.caption}
-                  loading="lazy"
-                  decoding="async"
-                />
-                <div className="ga-gallery-item-overlay">
-                  <span>{img.caption}</span>
-                </div>
-              </button>
-            ))}
+            {currentData.gallery.map((img, i) => (
+                <button
+                  className={`ga-gallery-item ${i === 0 ? "ga-gallery-item--wide" : ""}`}
+                  key={img.id}
+                  onClick={() => setLightboxIdx(i)}
+                  aria-label={`View photo: ${img.caption}`}
+                >
+                  <img
+                    src={img.src}
+                    alt={img.caption}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <div className="ga-gallery-item-overlay">
+                    <span>{img.caption}</span>
+                  </div>
+                </button>
+              ))}
           </div>
 
-          {/* <p className="ga-gallery-note ga-reveal">
-            Photos shown are illustrative. Official photo documentation will be made available through
-            the CEAP NCR Facebook page and official channels.
-          </p> */}
-        </div>
-      </section>
+          </div>
+        </section>
+      </>
+    )}
 
       {/* ── CTA FOOTER BAR ────────────────────── */}
       {/* <section className="ga-cta-bar">
@@ -799,11 +847,11 @@ export default function GeneralAssemblyPage({ onBack, onNavigate, activeNav }) {
       {/* ── LIGHTBOX ──────────────────────────── */}
       {lightboxIdx !== null && (
         <Lightbox
-          images={GALLERY_IMAGES}
+          images={currentData.gallery}
           activeIndex={lightboxIdx}
           onClose={() => setLightboxIdx(null)}
-          onPrev={() => setLightboxIdx((i) => (i - 1 + GALLERY_IMAGES.length) % GALLERY_IMAGES.length)}
-          onNext={() => setLightboxIdx((i) => (i + 1) % GALLERY_IMAGES.length)}
+          onPrev={() => setLightboxIdx((lightboxIdx - 1 + currentData.gallery.length) % currentData.gallery.length)}
+          onNext={() => setLightboxIdx((lightboxIdx + 1) % currentData.gallery.length)}
         />
       )}
     </div>
